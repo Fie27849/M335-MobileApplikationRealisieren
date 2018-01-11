@@ -1,60 +1,247 @@
 <!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
+	<head>
+	<meta name="description" content="Live example of http://mobile.tutsplus.com/tutorials/mobile-web-apps/build-an-exercise-tracking-app-persistence-graphing/ with a small fix for the tracking-part" />
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-    <!-- Good default declaration:
-    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-        * Enable inline JS: add 'unsafe-inline' to default-src
-        * Enable eval(): add 'unsafe-eval' to default-src
-    * Create your own at http://cspisawesome.com
-    -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/init.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="js/googlemap.js"></script>
+	<script type="text/javascript" src="js/firebase.js"></script>
+	<script type="text/javascript" src="js/json2.js"></script>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.1.0.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
-</head>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<body>
-    <div class="app">
-        <h1>PhoneGap</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div>
-    </div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="js/jquery.mobile-1.1.0.min.css" />
+	<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+
+	<meta charset=utf-8 />
+	<title>findmylocation</title>
+	</head>
+	<body>
+
+		<div class="app">
+			<div id="content">
+
+				<!-- Start "Anmelden"  -->
+
+				<div data-role="page" id="userAuth">
+					<div data-role="header">
+						<div class="row">
+							<div class="col-xs-4">
+								<div class="logoWrap">
+									<i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-map-marker" aria-hidden="true"></i>
+								</div>								
+							</div>
+							<div class="col-xs-8">
+								<h1>melde dich an</h1>
+							</div>
+						</div>						
+					</div>
+					<div data-role="content">
+						<div class="row">
+							<div class="col-xs-8 col-xs-push-2">
+								<form action="">
+									<fieldset>
+										<input type="text" name="username-userAuth" id="username-userAuth" placeholder="Benutzername">
+										<input type="password" name="password-userAuth" id="password-userAuth" placeholder="Passwort">
+										<input type="submit" id="submitUserAuth" value="anmelden">
+									</fieldset>
+								</form>
+								<div class="newPW-link">
+									<span>hast du dein Passwort vergessen?</span>
+									<a href="#newPW"><button type="button" name="toNewPW" id="toNewPW">neues Passwort</button></a>
+								</div>
+								<div class="register-link">
+									<span>hast du noch keinen Account?</span>
+									<a href="#register"><button type="button" name="toRegister" id="toRegister">regestrieren</button></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="footer">
+						<div class="row">
+							<div class="col-xs-8 col-xs-push-2">
+							<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
+							</div>
+						</div>
+					</div>
+				</div><!-- /page -->
+
+
+				<!-- Start "Regestrieren"  -->
+
+				<div data-role="page" id="register">
+					<div data-role="header">
+						<div class="row">
+							<div class="col-xs-4">
+								<div class="logoWrap">
+									<i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-map-marker" aria-hidden="true"></i>
+								</div>								
+							</div>
+							<div class="col-xs-8">
+								<h1>erstelle einen neuen Account</h1>
+							</div>
+						</div>	
+					</div>
+					<div data-role="content"> 
+						<form action="">
+							<fieldset>
+								<input type="text" name="username-newAccount" id="username-newAccount" placeholder="Benutzername">
+								<input type="password" name="newnewAccountPW1" id="newnewAccountPW1" placeholder="Passwort">
+								<input type="password" name="newnewAccountPW2" id="newnewAccountPW2" placeholder="Passwort wiederholen">
+								<input type="checkbox" name="allowGPS" id="allowGPS" value="allowGPS">Standortzugriff erlauben<br>
+								<input type="submit" id="submitRegister" value="regestrieren">
+							</fieldset>
+						</form>
+						<span class="backToUserAuth"><a href="#userAuth" id="backToUserAuth">abbrechen</a></span>
+					</div>
+					<div class="footer">
+						<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
+					</div>
+				</div><!-- /page -->
+
+
+				<!-- Start "NeuesPasswort"  -->
+
+				<div data-role="page" id="newPW">
+					<div data-role="header">
+						<div class="row">
+							<div class="col-xs-4">
+								<div class="logoWrap">
+									<i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-map-marker" aria-hidden="true"></i>
+								</div>								
+							</div>
+							<div class="col-xs-8">
+								<h1>gib dein neues Passwort ein</h1>
+							</div>
+						</div>	
+					</div>
+					<div data-role="content"> 
+						<form action="">
+							<fieldset>
+								<input type="text" name="username-newPW" id="username-newPW" placeholder="Benutzername">
+								<input type="password" name="newPW1" id="newPW1" placeholder="Neues Passwort">
+								<input type="password" name="newPW2" id="newPW2" placeholder="Neues Passwort wiederholen">
+								<input type="submit" id="submitNewPW" value="bestätigen">
+							</fieldset>
+						</form>
+						<span class="backToUserAuth"><a href="#userAuth" id="backToUserAuth">abbrechen</a></span>
+					</div>
+					<div class="footer">
+						<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
+					</div>
+				</div><!-- /page -->
+
+
+				<!-- Start "Home" -->
+				<div data-role="page" id="home">
+					<div data-role="header">
+						<div class="row">
+							<div class="col-xs-4">
+								<div class="logoWrap">
+									<i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-map-marker" aria-hidden="true"></i>
+								</div>								
+							</div>
+							<div class="col-xs-8">
+								<h1>füge einen neuen Ort hinzu</h1>
+							</div>
+						</div>
+					</div>
+					<div data-role="content"> 
+						<form action="">
+							<fieldset>
+								<input type="text" name="nameNewPlace" id="nameNewPlace" value="neuen Ort benennen">
+								<input type="submit" name="saveNewPalce" id="saveNewPalce" value="speichern">
+							</fieldset>
+						</form>
+						<a href="#list" class="showAll"><button type="button" name="showAll" id="showAll">alle anzeigen</button></a>
+						<a href="#userAuth" class="signOut"><button type="button" name="signOut" id="signOut">abmelden</button></a>
+					</div>
+					<div class="footer">
+						<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
+					</div>
+				</div><!-- /page -->
+
+
+				<!-- Start "Liste"-->
+				<div data-role="page" id="list">
+					<div data-role="header">
+						<div class="row">
+							<div class="col-xs-4">
+								<div class="logoWrap">
+									<button type="button" name="back"><i class="fa fa-chevron-left" aria-hidden="true"></i> zurück</button>
+								</div>								
+							</div>
+							<div class="col-xs-8">
+								<h1>deine Orte</h1>
+							</div>
+						</div>
+					</div>
+					<div data-role="content"> 
+
+					</div>
+					<div class="footer">
+						<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
+					</div>
+				</div><!-- /page -->
+
+
+				<!-- Start "Detail 1"-->
+				<div data-role="page" id="detail1">
+					<div data-role="header">
+						<div class="row">
+							<div class="col-xs-4">
+								<div class="logoWrap">
+									<button type="button" name="back"><i class="fa fa-chevron-left" aria-hidden="true"></i> zurück</button>
+								</div>								
+							</div>
+							<div class="col-xs-8">
+								<h1>NAME AUS DB</h1>
+							</div>
+						</div>
+					</div>
+					<div data-role="content">
+						<div id="map_canvas">
+
+						</div>
+						<button type="button" name="planRoute" id="planRoute">Route planen</button>
+					</div>
+					<div class="footer">
+						<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
+					</div>
+				</div><!-- /page -->
+
+
+				<!-- Start "Detail 2"-->
+				<div data-role="page" id="detail2">
+					<div data-role="header">
+						<h1></h1>
+					</div>
+					<div data-role="content">
+						<div id="map_canvas">
+
+						</div>
+					</div>
+					<div class="footer">
+						<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
+					</div>
+				</div><!-- /page -->
+
+
+			</div>
+		</div>
+
 </body>
-
 </html>
+
