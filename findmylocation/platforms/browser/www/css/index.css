@@ -112,10 +112,12 @@ h1.mLines{
 }
 
 
-.userAuthFields, .newAccoutFields, .newPlaceFields, .newPW-link, .register-link, .showAll, .signOut{
+.userAuthFields, .newPlaceFields, .newPW-link, .register-link, .showAll, .signOut{
     margin-bottom: 50px!important;
 }
-
+.newAccoutFields, .newPWFields{
+    margin-bottom: 20px!important;
+}
 input{
     margin-bottom: 10px;
 }
@@ -126,6 +128,18 @@ input{
 #nameNewPlace, #saveNewPalce, 
 #showAll, #signOut, .back, #planRoute{
     border-radius: 0;
+}
+
+#submitRegister{
+    
+}
+
+.ui-checkbox input, .ui-radio input{
+    height: 15px;
+    width: 15px;
+}
+#allowGPS{
+    margin: 0;
 }
 
 
