@@ -1,108 +1,120 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="description" content="Live example of http://mobile.tutsplus.com/tutorials/mobile-web-apps/build-an-exercise-tracking-app-persistence-graphing/ with a small fix for the tracking-part" />
+	<head>
+	<meta name="description" content="Live example of http://mobile.tutsplus.com/tutorials/mobile-web-apps/build-an-exercise-tracking-app-persistence-graphing/ with a small fix for the tracking-part" />
 
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/init.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-  <script type="text/javascript" src="js/googlemap.js"></script>
-  <script type="text/javascript" src="js/firebase.js"></script>
-  <script type="text/javascript" src="js/json2.js"></script>
-  <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-  <script type="text/javascript" src="js/jquery.mobile-1.1.0.min.js"></script>
-  <script type="text/javascript" src="cordova.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/init.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="js/googlemap.js"></script>
+	<script type="text/javascript" src="js/firebase.js"></script>
+	<script type="text/javascript" src="js/json2.js"></script>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.1.0.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
 
-  <link rel="stylesheet" href="js/jquery.mobile-1.1.0.min.css" />
-  <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
-  
-<meta charset=utf-8 />
-<title>findmylocation</title>
-</head>
-<body>
+	<link rel="stylesheet" href="js/jquery.mobile-1.1.0.min.css" />
+	<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 
-  <div class="app">
-    <div id="content">
+	<meta charset=utf-8 />
+	<title>findmylocation</title>
+	</head>
+	<body>
 
-      <!-- Start  -->
+		<div class="app">
+			<div id="content">
 
-        <div data-role="page" id="userAuth">
+				<!-- Start "Anmelden"  -->
 
-          <div data-role="header">
-            <h1></h1>
-          
-          </div>
+				<div data-role="page" id="userAuth">
+					<div data-role="header">
+						<h1></h1>
+					</div>
+					<div data-role="content"> 
 
-
-
-          <div data-role="content"> 
-
-          </div>
-
-        </div><!-- /page -->
-
-        <!-- Start home-->
-        <div data-role="page" id="home">
-
-          <div data-role="header">
-            <h1></h1>
-          
-          </div>
+					</div>
+				</div><!-- /page -->
 
 
+				<!-- Start "Regestrieren"  -->
 
-          <div data-role="content"> 
+				<div data-role="page" id="register">
+					<div data-role="header">
+						<h1></h1>
+					</div>
+					<div data-role="content"> 
 
-          </div>
-
-        </div><!-- /page -->
-
-
-        <!-- Start Auflistung-->
-        <div data-role="page" id="list">
-
-          <div data-role="header">
-            <h1></h1>
-          
-          </div>
+					</div>
+				</div><!-- /page -->
 
 
+				<!-- Start "NeuesPasswort"  -->
 
-          <div data-role="content"> 
+				<div data-role="page" id="newPW">
+					<div data-role="header">
+						<h1></h1>
+					</div>
+					<div data-role="content"> 
 
-          </div>
-
-        </div><!-- /page -->
-
-
-        <!-- Start Detailansicht-->
-        <div data-role="page" id="detail">
-
-          <div data-role="header">
-            <h1></h1>
-          
-          </div>
+					</div>
+				</div><!-- /page -->
 
 
+				<!-- Start "Home" -->
+				<div data-role="page" id="home">
+					<div data-role="header">
+						<h1></h1>
+					</div>
+					<div data-role="content"> 
 
-          <div data-role="content"> 
-
-            <div id="map_canvas">
-            </div>
-
-          </div>
-
-        </div><!-- /page -->
-
-       
-      
-    </div>
-  </div>
+					</div>
+				</div><!-- /page -->
 
 
+				<!-- Start "Liste"-->
+				<div data-role="page" id="list">
+					<div data-role="header">
+						<h1></h1>
+					</div>
+					<div data-role="content"> 
+
+					</div>
+				</div><!-- /page -->
+
+
+				<!-- Start "Detail 1"-->
+				<div data-role="page" id="detail1">
+					<div data-role="header">
+						<h1></h1>
+					</div>
+					<div data-role="content"> 
+
+						<div id="map_canvas">
+
+						</div>
+					</div>
+				</div><!-- /page -->
+
+
+				<!-- Start "Detail 2"-->
+				<div data-role="page" id="detail2">
+					<div data-role="header">
+						<h1></h1>
+					</div>
+					<div data-role="content"> 
+
+						<div id="map_canvas">
+
+						</div>
+					</div>
+				</div><!-- /page -->
+
+
+			</div>
+		</div>
 
 </body>
 </html>
