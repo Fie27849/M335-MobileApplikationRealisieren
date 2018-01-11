@@ -106,9 +106,10 @@ h1.mLines{
     bottom: 0;
     left: 0;
     right: 0;
-    font-family: 'Dekko', cursive;
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     font-weight: 300;
+    text-shadow: none;
 }
 .footer .row .col-xs-12 span{
     line-height: 30px;
