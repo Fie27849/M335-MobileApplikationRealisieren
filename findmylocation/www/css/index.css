@@ -94,12 +94,12 @@ h1 {
     bottom: 0;
     left: 0;
     right: 0;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-family: 'Dekko', cursive;
+    font-size: 18px;
     font-weight: 300;
 }
 .footer .row .col-xs-12 span{
-    line-height: 24px;
+    line-height: 30px;
 }
 
 
