@@ -173,7 +173,28 @@
 
   //read
 
+  // get elements
+  const preObject = document.getElementById('object');
+  const ulList = document.getElementById('list');
 
+  //create reference
+  const dbRefObject = firebase.database().ref().child('location');
+  const dbRefList = dbRefObject.child('lat');
+  const dbRefList = dbRefObject.child('lon');
+
+  // Sync object changes
+  dbRefLocation.on('value', snap => {
+
+  });
+
+  // Sync list changes
+  dbRefList.on('child_added', snap => {
+
+  	const li = document.getElementById('li');
+  	li.innerText = snap.val();
+  	ulList.appendChild(li);
+
+  });
 
   //list
 
