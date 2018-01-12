@@ -134,7 +134,7 @@
 
       var place = document.getElementById('nameNewPlace').value;
 
-      firebaseRef.push().set(message);
+      firebaseRef.push().set(place);
 
      // (window.location = "#home");
 
@@ -142,21 +142,34 @@
 
     function readlist(){
 
+      var divList = document.getElementById('liste').innerHTML = "";
+
       var firebaseRef = firebase.database().ref();
-      var ulList = document.getElementById('liste');
+      divList = document.getElementById('liste');
+
+
 
       firebaseRef.on('child_added', snap => {
-          const li =document.createElement('li');
-          li.innerText = snap.val();
-          li.id =snap.key;
-          ulList.appendChild(li);
+          const button =document.createElement('button');
+          button.innerText = snap.val();
+          button.id =snap.key;
+          divList.appendChild(button);
+          var buttonid = snap.key;
+          document.getElementById(buttonid).setAttribute("onclick", "detail(" + buttonid + ");");
+
+        //  alert('Standort wurde gespeichert');
 
 
       });
 
     }
 
-   
+
+    function detail(id){
+      
+    }
+
+  
 
 
     /**
