@@ -71,8 +71,9 @@ h1 {
 }
 
 h1.mLines{
-    font-size: 25px;
-    line-height: 70px;
+    font-size: 20px;
+    line-height: 20px;
+    padding-top: 15px;
 }
 
 .logoWrap{
