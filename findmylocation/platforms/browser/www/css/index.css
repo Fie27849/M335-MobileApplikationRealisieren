@@ -230,6 +230,7 @@ ul#liste button{
     font-size: 18px;
     color: #04345E;
     line-height: 40px;
+    border: none;
     border-bottom: 1px solid #3975A9;
 }
 
