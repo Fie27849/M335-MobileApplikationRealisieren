@@ -130,11 +130,14 @@
 
     function addlist(){
 
+      alert('Standort wurde gespeichert');
+
       var firebaseRef = firebase.database().ref();
+      var firebaseloc = firebaseRef.child('location');
 
       var place = document.getElementById('nameNewPlace').value;
 
-      firebaseRef.push().set(place);
+      firebaseloc.push().set(place);
 
      // (window.location = "#home");
 
@@ -145,19 +148,20 @@
       var divList = document.getElementById('liste').innerHTML = "";
 
       var firebaseRef = firebase.database().ref();
+      var firebaseloc = firebaseRef.child('location');
       divList = document.getElementById('liste');
 
 
 
-      firebaseRef.on('child_added', snap => {
+      firebaseloc.on('child_added', snap => {
+
+
           const button =document.createElement('button');
           button.innerText = snap.val();
           button.id =snap.key;
           divList.appendChild(button);
           var buttonid = snap.key;
-          document.getElementById(buttonid).setAttribute("onclick", "detail(" + buttonid + ");");
-
-        //  alert('Standort wurde gespeichert');
+          document.getElementById(buttonid).setAttribute("onclick", "detail(this.id);");
 
 
       });
@@ -167,7 +171,9 @@
 
     function detail(id){
 
-      window.location = "#home";
+      console.log(id);
+
+      window.location = "#detail1";
 
       var divloctitel = document.getElementById('loctitel').innerHTML = "";
 
