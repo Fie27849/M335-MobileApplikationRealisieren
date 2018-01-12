@@ -64,7 +64,7 @@
      * Handles the sign up button press.
      */
     function handleSignUp() {
-      var email = document.getElementById('usernamenewAccount').value;
+      var email = document.getElementById('mailNewAccount').value;
       var password = document.getElementById('newnewAccountPW').value;
       if (email.length < 4) {
         alert('Please enter an email address.');
@@ -127,6 +127,31 @@
       });
       // [END sendpasswordemail];
     }
+
+    function addlist(){
+
+      var firebaseRef = firebase.database().ref();
+
+      var message = document.getElementById('nameNewPlace').value;
+
+      firebaseRef.push().set(message);
+
+    }
+
+    function readlist(){
+
+      var firebaseRef = firebase.database().ref();
+      var ulList = document.getElementById('liste');
+
+      firebaseRef.on('child_added', snap => {
+          const li =document.createElement('li');
+          li.innerText = snap.val();
+          ulList.appendChild(li);
+      });
+
+    }
+
+
     /**
      * initApp handles setting up UI event listeners and registering Firebase auth listeners:
      *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
@@ -181,20 +206,20 @@
   //write
   const myUserId = firebase.auth().currentUser.uid;
 
-	function writeNewLocation(location, lat, lon) {
-	  // A post entry.
-	  var postData = {
-	    uid: myUserId,
-	    location: location,
-	    lan: lon
-	  };
+  function writeNewLocation(location, lat, lon) {
+    // A post entry.
+    var postData = {
+      uid: myUserId,
+      location: location,
+      lan: lon
+    };
 
-	  var newLocationKey = firebase.database().ref().child('location').push().key;
+    var newLocationKey = firebase.database().ref().child('location').push().key;
 
-	  var updates = {};
-  		updates['/user/' + uid + '/' + newLocationKey] = postData;
+    var updates = {};
+      updates['/user/' + uid + '/' + newLocationKey] = postData;
 
-  		return firebase.database().ref().update(updates);
+      return firebase.database().ref().update(updates);
 
 
   //read
@@ -217,24 +242,24 @@
   // Sync list changes
   dbReflocation.on('child_added', snap => {
 
-  	const li = document.getElementById('li');
-  	li.innerText = snap.val();
-  	li.id = snap.key;
-  	ulList.appendChild(li);
+    const li = document.getElementById('li');
+    li.innerText = snap.val();
+    li.id = snap.key;
+    ulList.appendChild(li);
 
   });
 
   dbReflocation.on('child_changed', snap => {
 
-  	const liChanged = document.getElementById(snap.key);
-  	liChanged.innerText = snap.val();
+    const liChanged = document.getElementById(snap.key);
+    liChanged.innerText = snap.val();
 
   });
 
   dbReflocation.on('child_removed', snap => {
 
-  	const liToRemoved = document.getElementById(snap.key);
-  	liToRemoved.remove();
+    const liToRemoved = document.getElementById(snap.key);
+    liToRemoved.remove();
 
   });
 
@@ -248,6 +273,9 @@
 
   // get elements
 
+ //read
+
+ 
 
 
 

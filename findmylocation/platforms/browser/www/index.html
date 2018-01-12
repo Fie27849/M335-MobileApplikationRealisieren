@@ -220,11 +220,11 @@
 							<div class="col-xs-10 col-xs-push-1">
 								<form action="">
 							<fieldset class="newPlaceFields">
-								<input type="text" name="nameNewPlace" id="nameNewPlace" value="neuen Ort benennen">
-								<button id="savePlace" onclick="CurrentPosition();">Speichern</button></a>
+								<input type="text" name="nameNewPlace" id="nameNewPlace" placeholder="neuen Ort benennen">
+								<button id="savePlace" onclick="addlist();">Speichern</button></a>
 							</fieldset>
 						</form>
-						<a href="#list" class="showAll"><button type="button" name="showAll" id="showAll">alle anzeigen</button></a>
+						<a href="#list" class="showAll"><button type="button" name="showAll" id="showAll" onclick="readlist()">alle anzeigen</button></a>
 						<a href="#userAuth" class="signOut"><button id="btnSignout" onclick="toggleSignIn();">abmelden</button></a>
 							</div>
 						</div>
@@ -268,6 +268,9 @@
 						</div>
 					</div>
 					<div data-role="content"> 
+
+						<ul id="liste">
+						</ul>
 
 					</div>
 					<div class="footer">
