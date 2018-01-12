@@ -150,6 +150,7 @@
       var firebaseRef = firebase.database().ref();
       var firebaseloc = firebaseRef.child('location');
       divList = document.getElementById('liste');
+      divList2 = document.getElementById('liste2');
 
 
 
@@ -161,8 +162,16 @@
           button.id =snap.key;
           divList.appendChild(button);
           var buttonid = snap.key;
-          document.getElementById(buttonid).setAttribute("onclick", "detail(this.id);");
+          document.getElementById(buttonid).setAttribute("onclick", "detail('" + buttonid + "');");
 
+         
+          const button2 =document.createElement('button');
+          button2.innerText = "delete";
+          button2.id = "delete";
+          divList2.appendChild(button2);
+          var key = snap.key;
+          var buttonid = "delete";
+          document.getElementById(buttonid).setAttribute("onclick", "removeplace('" + key + "');");
 
       });
 
@@ -171,25 +180,31 @@
 
     function detail(id){
 
-      console.log(id);
-
       window.location = "#detail1";
-
-      
 
       var firebaseRef = firebase.database().ref().child('location/' + id);
 
-
-      console.log(firebaseRef)
       var divloctitel = document.getElementById('loctitel').innerHTML = "";
 
       divloctitel = document.getElementById('loctitel');
 
 
+
       firebaseRef.on('value', snap => {
-        console.log(snap.val());
         divloctitel.innerText = snap.val();
       });
+
+
+
+    }
+
+    function removeplace(){
+
+      var firebaseRef = firebase.database().ref().child('location/' + id);
+
+      console.log(firebaseRef);
+
+      firebaseRef.removeValue();
 
     }
 
