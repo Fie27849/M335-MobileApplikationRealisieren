@@ -175,14 +175,20 @@
 
       window.location = "#detail1";
 
+      
+
+      var firebaseRef = firebase.database().ref().child('location/' + id);
+
+
+      console.log(firebaseRef)
       var divloctitel = document.getElementById('loctitel').innerHTML = "";
 
-      var firebaseRef = firebase.database().ref(id);
       divloctitel = document.getElementById('loctitel');
 
-      var valueFromID = firebaseRef.on('value', snap => {
-        const h1 =document.createElement('h1');
-        divloctitel.appendChild(h1);
+
+      firebaseRef.on('value', snap => {
+        console.log(snap.val());
+        divloctitel.innerText = snap.val();
       });
 
     }
