@@ -14,6 +14,7 @@
 
   //auth
 
+
       function toggleSignIn() {
       if (firebase.auth().currentUser) {
         // [START signout]
@@ -32,7 +33,8 @@
         }
         // Sign in with email and pass.
         // [START authwithemail]
-        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -48,14 +50,22 @@
         });
         // [END authwithemail]
       }
-      document.getElementById('quickstart-sign-in').disabled = true;
+      console.log('sign in');
     }
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        (window.location = "#home")
+      } else {
+        console.log('no user');
+      }
+    });
     /**
      * Handles the sign up button press.
      */
     function handleSignUp() {
-      var email = document.getElementById('email').value;
-      var password = document.getElementById('password').value;
+      var email = document.getElementById('usernamenewAccount').value;
+      var password = document.getElementById('newnewAccountPW').value;
       if (email.length < 4) {
         alert('Please enter an email address.');
         return;
@@ -121,7 +131,7 @@
      * initApp handles setting up UI event listeners and registering Firebase auth listeners:
      *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
      *    out, and that is where we update the UI.
-     */
+     
     function initApp() {
       // Listening for auth state changes.
       // [START authstatelistener]
@@ -166,9 +176,25 @@
     window.onload = function() {
       initApp();
     };
+   
 
   //write
+  const myUserId = firebase.auth().currentUser.uid;
 
+	function writeNewLocation(location, lat, lon) {
+	  // A post entry.
+	  var postData = {
+	    uid: myUserId,
+	    location: location,
+	    lan: lon
+	  };
+
+	  var newLocationKey = firebase.database().ref().child('location').push().key;
+
+	  var updates = {};
+  		updates['/user/' + uid + '/' + newLocationKey] = postData;
+
+  		return firebase.database().ref().update(updates);
 
 
   //read
@@ -177,10 +203,11 @@
   const preObject = document.getElementById('object');
   const ulList = document.getElementById('list');
 
+
   //create reference
-  const dbRefObject = firebase.database().ref().child('location');
-  const dbRefList = dbRefObject.child('lat');
-  const dbRefList = dbRefObject.child('lon');
+  const dbReflocation = firebase.database().ref('location/' + myUserId);
+  const dbRefLat = dbRefObject.child('lat');
+  const dbRefLon = dbRefObject.child('lon');
 
   // Sync object changes
   dbRefLocation.on('value', snap => {
@@ -188,7 +215,7 @@
   });
 
   // Sync list changes
-  dbRefList.on('child_added', snap => {
+  dbReflocation.on('child_added', snap => {
 
   	const li = document.getElementById('li');
   	li.innerText = snap.val();
@@ -197,14 +224,14 @@
 
   });
 
-  dbRefList.on('child_changed', snap => {
+  dbReflocation.on('child_changed', snap => {
 
   	const liChanged = document.getElementById(snap.key);
   	liChanged.innerText = snap.val();
 
   });
 
-  dbRefList.on('child_removed', snap => {
+  dbReflocation.on('child_removed', snap => {
 
   	const liToRemoved = document.getElementById(snap.key);
   	liToRemoved.remove();
@@ -213,8 +240,36 @@
 
   //list
 
-
+*/
  
+ //write
+
+  //read
+
+  // get elements
 
 
+
+
+function savePosition(lat, lon){
+
+  var userId = firebase.auth().currentUser.uid;
+  var location = document.getElementById('location').value;
+
+  // A post entry.
+    var postData = {
+      uid: userId,
+      location: location,
+      lan: lon
+    };
+
+    var newLocationKey = firebase.database().ref().child('location').push().key;
+
+    var updates = {};
+      updates['/user/' + uid + '/' + newLocationKey] = postData;
+
+      return firebase.database().ref().update(updates);
+
+      window.location = "#home";
+}
 

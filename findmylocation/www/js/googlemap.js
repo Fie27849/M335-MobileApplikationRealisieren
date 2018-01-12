@@ -1,3 +1,26 @@
+var lat;
+var lon;
+var geoID
+
+ function CurrentPosition(){
+
+	 geoID = navigator.geolocation.getCurrentPosition(
+
+	 function onSuccess(position) {
+
+		lat = position.coords.latitude;
+		lon = position.coords.longitude;
+
+    },
+ 
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    });
+ 
+   savePosition(lat, lon);
+}
+
 function GoogleMap(){
 
 this.initialize = function(){
@@ -27,3 +50,5 @@ var markerOne = new google.maps.Marker({
 position: latitudeAndLongitudeOne,
 map: map
 });
+}
+

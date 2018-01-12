@@ -3,18 +3,14 @@
 	<head>
 	<meta name="description" content="Live example of http://mobile.tutsplus.com/tutorials/mobile-web-apps/build-an-exercise-tracking-app-persistence-graphing/ with a small fix for the tracking-part" />
 
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBRBAXjr8vt8TZAsuxnPO1JeWLrmqfRlzQ&sensor=true"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/init.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-	<script type="text/javascript" src="js/googlemap.js"></script>
-	<script type="text/javascript" src="js/firebase.js"></script>
 	<script type="text/javascript" src="js/json2.js"></script>
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile-1.1.0.min.js"></script>
-	<script type="text/javascript" src="cordova.js"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Dekko" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
@@ -51,7 +47,7 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="oneLine">melde dich an</h1>
+									<h1>melde dich an</h1>
 								</div>
 								<div class="col-xs-1"></div>
 							</div>	
@@ -60,17 +56,17 @@
 					<div data-role="content">
 						<div class="container">
 							<div class="row">
-								<div class="col-xs-10 col-xs-push-1">
+								<div class="col-xs-8 col-xs-push-2">
 									<form action="">
 										<fieldset class="userAuthFields">
-											<input type="text" name="username-userAuth" id="username-userAuth" placeholder="Benutzername">
-											<input type="password" name="password-userAuth" id="password-userAuth" placeholder="Passwort">
-											<input type="submit" id="submitUserAuth" value="anmelden">
+											<input type="text" name="username-userAuth" id="email" placeholder="Benutzername">
+											<input type="password" name="password-userAuth" id="password" placeholder="Passwort">
+											<button id="btnLogin" onclick="toggleSignIn();">anmelden</button>
 										</fieldset>
 									</form>
 									<div class="newPW-link">
 										<span>hast du dein Passwort vergessen?</span>
-										<a href="#newPW"><button type="button" name="toNewPW" id="toNewPW">neues Passwort</button></a>
+										<button id="btnSignin" onclick="sendPasswordReset();">Passwort Reset</button>
 									</div>
 									<div class="register-link">
 										<span>hast du noch keinen Account?</span>
@@ -106,7 +102,7 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="mLines">erstelle einen neuen Account</h1>
+									<h1>erstelle einen neuen Account</h1>
 								</div>
 								<div class="col-xs-1"></div>
 							</div>	
@@ -115,13 +111,13 @@
 					<div data-role="content">
 						<div class="container">
 							<div class="row">
-								<div class="col-xs-10 col-xs-push-1">
+								<div class="col-xs-8 col-xs-push-2">
 									<form action="">
 										<fieldset class="newAccoutFields">
-											<input type="text" name="username-newAccount" id="username-newAccount" placeholder="Benutzername">
-											<input type="password" name="newnewAccountPW1" id="newnewAccountPW1" placeholder="Passwort">
-											<input type="checkbox" name="allowGPS" id="allowGPS" value="allowGPS"><span>Standortzugriff erlauben</span><br>
-											<input type="submit" id="submitRegister" value="regestrieren">
+											<input type="text" name="username-newAccount" id="usernamenewAccount" placeholder="Benutzername">
+											<input type="password" name="newnewAccountPW1" id="newnewAccountPW" placeholder="Passwort">
+											<input type="checkbox" name="allowGPS" id="allowGPS" value="allowGPS">Standortzugriff erlauben<br>
+											<button id="btnSignup" onclick="handleSignUp();">anmelden</button></a>
 										</fieldset>
 									</form>
 									<span class="backToUserAuth"><a href="#userAuth" id="backToUserAuth">abbrechen</a></span>
@@ -133,8 +129,7 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-12">
-								<span>Copyright ©2018</span><br>
-								<span>Stephanie Kessler & Sandro Trottmann</span>
+								<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
 								</div>
 							</div>
 						</div>
@@ -155,7 +150,7 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="mLines">gib dein neues Passwort ein</h1>
+									<h1>gib dein neues Passwort ein</h1>
 								</div>
 								<div class="col-xs-1"></div>
 							</div>	
@@ -164,7 +159,7 @@
 					<div data-role="content">
 						<div class="container">
 							<div class="row">
-								<div class="col-xs-10 col-xs-push-1">
+								<div class="col-xs-8 col-xs-push-2">
 									<form action="">
 										<fieldset class="newPWFields">
 											<input type="text" name="username-newPW" id="username-newPW" placeholder="Benutzername">
@@ -181,8 +176,7 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-12">
-								<span>Copyright ©2018</span><br>
-								<span>Stephanie Kessler & Sandro Trottmann</span>
+								<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
 								</div>
 							</div>
 						</div>
@@ -202,7 +196,7 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="mLines">füge einen neuen Ort hinzu</h1>
+									<h1>füge einen neuen Ort hinzu</h1>
 								</div>
 								<div class="col-xs-1"></div>
 							</div>
@@ -212,18 +206,17 @@
 						<form action="">
 							<fieldset class="newPlaceFields">
 								<input type="text" name="nameNewPlace" id="nameNewPlace" value="neuen Ort benennen">
-								<input type="submit" name="saveNewPalce" id="saveNewPalce" value="speichern">
+								<button id="savePlace" onclick="CurrentPosition();">Speichern</button></a>
 							</fieldset>
 						</form>
 						<a href="#list" class="showAll"><button type="button" name="showAll" id="showAll">alle anzeigen</button></a>
-						<a href="#userAuth" class="signOut"><button type="button" name="signOut" id="signOut">abmelden</button></a>
+						<a href="#userAuth" class="signOut"><button id="btnSignout" onclick="toggleSignIn();">abmelden</button></a></a>
 					</div>
 					<div class="footer">
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-12">
-								<span>Copyright ©2018</span><br>
-								<span>Stephanie Kessler & Sandro Trottmann</span>
+								<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
 								</div>
 							</div>
 						</div>
@@ -247,9 +240,11 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="oneLine">deine Orte</h1>
+									<h1>deine Orte</h1>
 								</div>
 								<div class="col-xs-1"></div>
+									<ul id="list">
+									</ul>
 							</div>
 						</div>
 					</div>
@@ -260,8 +255,7 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-12">
-								<span>Copyright ©2018</span><br>
-								<span>Stephanie Kessler & Sandro Trottmann</span>
+								<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
 								</div>
 							</div>
 						</div>
@@ -285,7 +279,7 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="mLines">NAME AUS DB</h1>
+									<h1>NAME AUS DB</h1>
 								</div>
 								<div class="col-xs-1"></div>
 							</div>
@@ -301,8 +295,7 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-12">
-								<span>Copyright ©2018</span><br>
-								<span>Stephanie Kessler & Sandro Trottmann</span>
+								<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
 								</div>
 							</div>
 						</div>
@@ -326,7 +319,7 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="mLines">NAME AUS DB</h1>
+									<h1>NAME AUS DB</h1>
 								</div>
 								<div class="col-xs-1"></div>
 							</div>
@@ -341,8 +334,7 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-12">
-								<span>Copyright ©2018</span><br>
-								<span>Stephanie Kessler & Sandro Trottmann</span>
+								<span>Copyright ©2018 - Stephanie Kessler & Sandro Trottmann</span>
 								</div>
 							</div>
 						</div>
@@ -352,7 +344,8 @@
 
 			</div>
 		</div>
-
+  <script type="text/javascript" src="js/googlemap.js"></script>
+  <script type="text/javascript" src="js/firebase.js"></script>
 </body>
 </html>
 

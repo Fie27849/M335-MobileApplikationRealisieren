@@ -31,14 +31,11 @@ body {
     background-attachment:fixed;
     font-family: 'Open Sans', sans-serif;
     font-size:12px;
-    text-shadow: none;
     text-align:center;
     height:100%;
     width:100%;
     margin:0px;
     padding:0px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Portrait layout (default) */
@@ -57,26 +54,17 @@ body {
 }
 
 .header{
-    background: linear-gradient(to bottom right, #3975A9, #064276);
+    background-image: linear-gradient(#085394,#085394);
     height: 75px;
 }
 
-h1.oneLine{
+h1 {
     font-size:30px;
     font-weight:normal;
     margin:0px;
     padding:0px;
     text-align:right;
     line-height: 74px;
-    font-family: 'Dekko', cursive;
-}
-h1.mLines{
-    font-size:30px;
-    font-weight:normal;
-    margin:0px;
-    padding:0px;
-    text-align:right;
-    line-height: 37px;
     font-family: 'Dekko', cursive;
 }
 
@@ -96,88 +84,30 @@ h1.mLines{
 }
 
 .ui-content{
-    margin-top: 60px;
+    margin-top: 100px!important;
 }
 
 .footer{
-    background: linear-gradient(to bottom right, #3975A9, #064276);
+    background-image: linear-gradient(#085394,#085394);
     color: #fff;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
+    font-size: 13px;
     font-weight: 300;
-    text-shadow: none;
 }
 .footer .row .col-xs-12 span{
-    line-height: 30px;
+    line-height: 24px;
 }
 
 
-.userAuthFields, .newPlaceFields, .newPW-link, .register-link, .showAll, .signOut{
+.userAuthFields, .newAccoutFields, .newPlaceFields, .newPW-link, .register-link, .showAll, .signOut{
     margin-bottom: 50px!important;
 }
-.newAccoutFields, .newPWFields{
-    margin-bottom: 20px!important;
-}
-input{
-    margin-bottom: 10px;
-}
-#username-userAuth, #password-userAuth, #submitUserAuth, 
-#toNewPW, #toRegister, #username-newAccount, 
-#newnewAccountPW1, #submitRegister, 
-#username-newPW, #newPW1, #submitNewPW, 
-#nameNewPlace, #saveNewPalce, 
-#showAll, #signOut, .back, #planRoute{
-    border-radius: 0;
-}
 
-.ui-checkbox input, .ui-radio input{
-    height: 15px;
-    width: 15px;
-}
-#allowGPS{
-    margin: 0;
-}
 
-.ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-up-c{
-    border-radius: 0;
-    margin: 0;
-    /*background: #085394;*/
-    background: linear-gradient(to bottom right, #3975A9, #064276);
-    color: #fff;
-    box-shadow: none;
-    text-shadow: none;
-    font-family: 'Dekko', cursive;
-    font-weight: normal;
-    border: none;
-    font-size: 17px;
-    
-}
-.ui-btn-block:hover{
-    border-radius: 0;
-    margin: 0;
-    /*background: #085394;*/
-    background: linear-gradient(to bottom right, #064276, #3975A9);
-    color: #fff;
-    box-shadow: none;
-    text-shadow: none;
-    font-family: 'Dekko', cursive;
-    font-weight: normal;
-    border: none;
-    font-size: 17px;
-    text-decoration: none;
-}
-
-.ui-btn-inner.ui-btn-corner-all{
-border: none;
-}
-
-.newAccoutFields .ui-btn.ui-btn-up-c.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block{
-    margin-top: 7px;
-}
 
 
 
