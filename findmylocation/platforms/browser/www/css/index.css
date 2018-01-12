@@ -69,13 +69,10 @@ h1 {
     line-height: 74px;
     font-family: 'Dekko', cursive;
 }
-h1.oneLine{
-
-}
 
 h1.mLines{
     font-size: 25px;
-    line-height: 37px;
+    line-height: 70px;
 }
 
 .logoWrap{
@@ -94,7 +91,7 @@ h1.mLines{
 }
 
 .ui-content{
-    margin-top: 100px!important;
+    margin-top: 50px!important;
 }
 
 .footer{
