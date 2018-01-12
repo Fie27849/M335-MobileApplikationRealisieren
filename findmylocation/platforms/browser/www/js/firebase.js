@@ -132,9 +132,11 @@
 
       var firebaseRef = firebase.database().ref();
 
-      var message = document.getElementById('nameNewPlace').value;
+      var place = document.getElementById('nameNewPlace').value;
 
       firebaseRef.push().set(message);
+
+     // (window.location = "#home");
 
     }
 
@@ -146,10 +148,15 @@
       firebaseRef.on('child_added', snap => {
           const li =document.createElement('li');
           li.innerText = snap.val();
+          li.id =snap.key;
           ulList.appendChild(li);
+
+
       });
 
     }
+
+   
 
 
     /**
