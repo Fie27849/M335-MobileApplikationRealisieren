@@ -36,6 +36,8 @@ body {
     width:100%;
     margin:0px;
     padding:0px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Portrait layout (default) */
@@ -128,6 +130,42 @@ h1.mLines{
     height: 20px;
 }
 
+.ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-up-c{
+    border-radius: 0;
+    margin: 0;
+    /*background: #085394;*/
+    background: linear-gradient(to bottom right, #3975A9, #064276);
+    color: #fff;
+    box-shadow: none;
+    text-shadow: none;
+    font-family: 'Dekko', cursive;
+    font-weight: normal;
+    border: none;
+    font-size: 17px;
+    
+}
+.ui-btn-block:hover{
+    border-radius: 0;
+    margin: 0;
+    /*background: #085394;*/
+    background: linear-gradient(to bottom right, #064276, #3975A9);
+    color: #fff;
+    box-shadow: none;
+    text-shadow: none;
+    font-family: 'Dekko', cursive;
+    font-weight: normal;
+    border: none;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.ui-btn-inner.ui-btn-corner-all{
+border: none;
+}
+
+.newAccoutFields .ui-btn.ui-btn-up-c.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block{
+    margin-top: 7px;
+}
 
 
 
