@@ -166,7 +166,19 @@
 
 
     function detail(id){
-      
+
+      window.location = "#home";
+
+      var divloctitel = document.getElementById('loctitel').innerHTML = "";
+
+      var firebaseRef = firebase.database().ref(id);
+      divloctitel = document.getElementById('loctitel');
+
+      var valueFromID = firebaseRef.on('value', snap => {
+        const h1 =document.createElement('h1');
+        divloctitel.appendChild(h1);
+      });
+
     }
 
   
