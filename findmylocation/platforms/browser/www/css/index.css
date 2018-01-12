@@ -166,12 +166,13 @@ h1.mLines{
     z-index: 3;
 }
 
-#savePlace, #showAll, #btnSignout, #btnLogin, #btnSignin, #toRegister, #btnSignup{
+#savePlace, #showAll, #btnSignout, #btnLogin, #btnSignin, #toRegister, #btnSignup, #planRoute{
     background: linear-gradient(to bottom right, #3975A9, #064276);
     opacity: 1;
 }
 
-#delPalce{
+#delPlace{
+    background: linear-gradient(to bottom right, #ff4c4c, #b20000);
     opacity: 1;
 }
 
