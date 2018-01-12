@@ -133,8 +133,8 @@ h1.mLines{
 .ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-up-a{
     border-radius: 0;
     margin: 0;
-    /*background: #085394;*/
-    background: linear-gradient(to bottom right, #3975A9, #064276);
+    background: transparent;
+    /*background: linear-gradient(to bottom right, #3975A9, #064276);*/
     color: #fff;
     box-shadow: none;
     text-shadow: none;
@@ -146,11 +146,10 @@ h1.mLines{
     
 }
 .ui-btn-block:hover, .ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-hover-c,
-.ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-hover-c{
+.ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-hover-a{
     border-radius: 0;
     margin: 0;
-    /*background: #085394;*/
-    background: linear-gradient(to bottom right, #064276, #3975A9);
+    background: transparent;
     color: #fff;
     box-shadow: none;
     text-shadow: none;
@@ -161,6 +160,30 @@ h1.mLines{
     text-decoration: none;
     margin-top: 10px;
 }
+
+.ui-btn-inner.ui-btn-corner-all .ui-btn-text{
+    color: #fff;
+    z-index: 3;
+}
+
+#savePlace, #showAll, #btnSignout, #btnLogin, #btnSignin, #toRegister, #btnSignup{
+    background: linear-gradient(to bottom right, #3975A9, #064276);
+    opacity: 1;
+}
+
+#delPalce{
+    opacity: 1;
+}
+
+.ui-btn-hidden{
+    opacity: 1;
+    background-color: transparent;
+    background: transparent;
+}
+
+
+
+
 
 .ui-btn-inner.ui-btn-corner-all{
 border: none;
@@ -185,6 +208,28 @@ border: none;
 }
 .logoWrapInner i{
     font-size: 13px;
+}
+
+.listContent, .detail1Content, .detail2Content{
+    margin: 0;
+    padding: 0;
+}
+
+ul#liste{
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+ul#liste button{
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: #04345E;
+    line-height: 40px;
+    border-bottom: 1px solid #3975A9;
 }
 
 
