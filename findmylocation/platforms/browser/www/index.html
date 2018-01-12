@@ -67,14 +67,12 @@
 					<div data-role="content">
 						<div class="container">
 							<div class="row">
-								<div class="col-xs-10 col-xs-push-1">
-									<form action="">
-										<fieldset class="userAuthFields">
+								<div class="col-xs-10 col-xs-push-1">									
+										<div class="userAuthFields">
 											<input type="text" name="mail-userAuth" id="email" placeholder="E-Mail">
 											<input type="password" name="password-userAuth" id="password" placeholder="Passwort">
 											<button id="btnLogin" onclick="toggleSignIn();">anmelden</button>
-										</fieldset>
-									</form>
+										</div>									
 									<div class="newPW-link">
 										<span>hast du dein Passwort vergessen?</span>
 										<button id="btnSignin" onclick="sendPasswordReset();">Passwort Reset</button>
@@ -123,14 +121,12 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-10 col-xs-push-1">
-									<form action="">
-										<fieldset class="newAccoutFields">
+									<div class="newAccoutFields">
 											<input type="text" name="mail-newAccount" id="mailNewAccount" placeholder="E-Mail">
 											<input type="password" name="newnewAccountPW" id="newnewAccountPW" placeholder="Passwort">
 											<input type="checkbox" name="allowGPS" id="allowGPS" value="allowGPS">Standortzugriff erlauben<br>
 											<button id="btnSignup" onclick="handleSignUp();">regestrieren</button></a>
-										</fieldset>
-									</form>
+										</div>
 									<span class="backToUserAuth"><a href="#userAuth" id="backToUserAuth">abbrechen</a></span>
 								</div>
 							</div>
@@ -172,12 +168,10 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-10 col-xs-push-1">
-									<form action="">
-										<fieldset class="newPWFields">
+									<div class="newPWFields">
 											<input type="text" name="mailForNewPW" id="mailForNewPW" placeholder="Benutzername">
 											<input type="submit" id="submitMailForNewPW" value="bestätigen">
-										</fieldset>
-									</form>
+										</div>
 									<span class="backToUserAuth"><a href="#userAuth" id="backToUserAuth">abbrechen</a></span>
 								</div>	
 							</div>
@@ -218,12 +212,10 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-10 col-xs-push-1">
-								<form action="">
-							<fieldset class="newPlaceFields">
+								<div class="newPlaceFields">
 								<input type="text" name="nameNewPlace" id="nameNewPlace" placeholder="neuen Ort benennen">
 								<button id="savePlace" onclick="addlist();">Speichern</button></a>
-							</fieldset>
-						</form>
+							</div>
 						<a href="#list" class="showAll"><button type="button" name="showAll" id="showAll" onclick="readlist();">alle anzeigen</button></a>
 						<a href="#userAuth" class="signOut"><button id="btnSignout" onclick="toggleSignIn();">abmelden</button></a>
 							</div>
