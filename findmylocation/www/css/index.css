@@ -129,7 +129,8 @@ h1.mLines{
     height: 20px;
 }
 
-.ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-up-c{
+.ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-up-c,
+.ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-up-a{
     border-radius: 0;
     margin: 0;
     /*background: #085394;*/
@@ -144,7 +145,8 @@ h1.mLines{
     margin-top: 10px;
     
 }
-.ui-btn-block:hover, .ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-hover-c{
+.ui-btn-block:hover, .ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-hover-c,
+.ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-hover-c{
     border-radius: 0;
     margin: 0;
     /*background: #085394;*/
@@ -164,9 +166,42 @@ h1.mLines{
 border: none;
 }
 
-.register-link a:hover{
+.register-link a:hover, .showAll:hover, .signOut:hover{
     text-decoration: none;
 }
+
+.logoWrapInner{
+    margin-top: 22px;
+    text-shadow: none;
+}
+#linkBack{
+    background-color: #fff;
+    color: #000;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    padding: 7px 15px;
+    text-decoration: none;
+}
+.logoWrapInner i{
+    font-size: 13px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
