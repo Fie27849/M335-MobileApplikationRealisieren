@@ -105,8 +105,9 @@ h1.mLines{
     left: 0;
     right: 0;
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 300;
+    text-shadow: none;
 }
 .footer .row .col-xs-12 span{
     line-height: 24px;
