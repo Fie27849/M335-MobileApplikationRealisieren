@@ -143,9 +143,10 @@ h1.mLines{
     font-weight: normal;
     border: none;
     font-size: 17px;
+    margin-top: 10px;
     
 }
-.ui-btn-block:hover{
+.ui-btn-block:hover, .ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-hover-c{
     border-radius: 0;
     margin: 0;
     /*background: #085394;*/
@@ -158,34 +159,16 @@ h1.mLines{
     border: none;
     font-size: 17px;
     text-decoration: none;
+    margin-top: 10px;
 }
 
 .ui-btn-inner.ui-btn-corner-all{
 border: none;
 }
 
-.newAccoutFields .ui-btn.ui-btn-up-c.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block{
-    margin-top: 7px;
+.register-link a:hover{
+    text-decoration: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -231,37 +214,5 @@ border: none;
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
