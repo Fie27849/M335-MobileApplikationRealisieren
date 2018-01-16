@@ -4,7 +4,7 @@
 	<meta name="description" content="Live example of http://mobile.tutsplus.com/tutorials/mobile-web-apps/build-an-exercise-tracking-app-persistence-graphing/ with a small fix for the tracking-part" />
 
 	<!-- Google API -->
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBRBAXjr8vt8TZAsuxnPO1JeWLrmqfRlzQ&sensor=true"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBRBAXjr8vt8TZAsuxnPO1JeWLrmqfRlzQ"></script>
 	<!-- Firebase -->
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-database.js"></script>
@@ -71,15 +71,15 @@
 										<div class="userAuthFields">
 											<input type="text" name="mail-userAuth" id="email" placeholder="E-Mail">
 											<input type="password" name="password-userAuth" id="password" placeholder="Passwort">
-											<button id="btnLogin" onclick="toggleSignIn();">anmelden</button>
+											<button id="btnLogin" onclick="toggleSignIn();">Anmelden</button>
 										</div>									
 									<div class="newPW-link">
-										<span>hast du dein Passwort vergessen?</span>
+										<span>Hast du dein Passwort vergessen?</span>
 										<button id="btnSignin" onclick="sendPasswordReset();">Passwort Reset</button>
 									</div>
 									<div class="register-link">
-										<span>hast du noch keinen Account?</span>
-										<a href="#register"><button type="button" name="toRegister" id="toRegister">regestrieren</button></a>
+										<span>Hast du noch keinen Account?</span>
+										<a href="#register"><button type="button" name="toRegister" id="toRegister">Regestrieren</button></a>
 									</div>
 								</div>
 							</div>
@@ -111,7 +111,7 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="mLines">erstelle einen neuen Account</h1>
+									<h1 class="mLines">Erstelle einen neuen Account</h1>
 								</div>
 								<div class="col-xs-1"></div>
 							</div>	
@@ -125,9 +125,9 @@
 											<input type="text" name="mail-newAccount" id="mailNewAccount" placeholder="E-Mail">
 											<input type="password" name="newnewAccountPW" id="newnewAccountPW" placeholder="Passwort">
 											<input type="checkbox" name="allowGPS" id="allowGPS" value="allowGPS">Standortzugriff erlauben<br>
-											<button id="btnSignup" onclick="handleSignUp();">regestrieren</button></a>
+											<button id="btnSignup" onclick="handleSignUp();">Regestrieren</button></a>
 										</div>
-									<span class="backToUserAuth"><a href="#userAuth" id="backToUserAuth">abbrechen</a></span>
+									<span class="backToUserAuth"><a href="#userAuth" id="backToUserAuth">Abbrechen</a></span>
 								</div>
 							</div>
 						</div>
@@ -158,7 +158,7 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="oneLine">gib deine E-Mail ein</h1>
+									<h1 class="oneLine">Gib deine E-Mail ein</h1>
 								</div>
 								<div class="col-xs-1"></div>
 							</div>	
@@ -172,7 +172,7 @@
 											<input type="text" name="mailForNewPW" id="mailForNewPW" placeholder="Benutzername">
 											<input type="submit" id="submitMailForNewPW" value="bestätigen">
 										</div>
-									<span class="backToUserAuth"><a href="#userAuth" id="backToUserAuth">abbrechen</a></span>
+									<span class="backToUserAuth"><a href="#userAuth" id="backToUserAuth">Abbrechen</a></span>
 								</div>	
 							</div>
 						</div>
@@ -202,7 +202,7 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="mLines">füge einen neuen Ort hinzu</h1>
+									<h1 class="mLines">Füge einen neuen Ort hinzu</h1>
 								</div>
 								<div class="col-xs-1"></div>
 							</div>
@@ -214,10 +214,10 @@
 							<div class="col-xs-10 col-xs-push-1">
 								<div class="newPlaceFields">
 								<input type="text" name="nameNewPlace" id="nameNewPlace" placeholder="neuen Ort benennen">
-								<button id="savePlace" onclick="addlist();">Speichern</button></a>
+								<button id="savePlace" onclick="CurrentPosition();">Speichern</button></a>
 							</div>
 						<a href="#list" class="showAll"><button type="button" name="showAll" id="showAll" onclick="readlist();">alle anzeigen</button></a>
-						<a href="#userAuth" class="signOut"><button id="btnSignout" onclick="toggleSignIn();">abmelden</button></a>
+						<a href="#userAuth" class="signOut"><button id="btnSignout" onclick="toggleSignIn();">Abmelden</button></a>
 							</div>
 						</div>
 					</div>						
@@ -251,7 +251,7 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="oneLine">deine Orte</h1>
+									<h1 class="oneLine">Deine Orte</h1>
 								</div>
 								<div class="col-xs-1"></div>
 
@@ -261,8 +261,6 @@
 					<div data-role="content listContent"> 
 
 						<div id="liste">
-						</div>
-						<div id="liste2">
 						</div>
 
 					</div>

@@ -128,29 +128,36 @@
       // [END sendpasswordemail];
     }
 
-    function addlist(){
+    function addlist(pos){
 
       alert('Standort wurde gespeichert');
 
-      var firebaseRef = firebase.database().ref();
+      var userId = firebase.auth().currentUser.uid;
+
+      var firebaseRef = firebase.database().ref('/users/' + userId);
       var firebaseloc = firebaseRef.child('location');
+      
+      
 
       var place = document.getElementById('nameNewPlace').value;
 
-      firebaseloc.push().set(place);
+      var firebaseloc2 = firebaseloc.child(place);
 
-     // (window.location = "#home");
+      firebaseloc2.set(pos);
 
     }
 
     function readlist(){
 
-      var divList = document.getElementById('liste').innerHTML = "";
+      var userId = firebase.auth().currentUser.uid;
 
-      var firebaseRef = firebase.database().ref();
+      var divList = document.getElementById('liste').innerHTML = "";
+      var i = 1 ;
+
+      var firebaseRef = firebase.database().ref('/users/' + userId);
       var firebaseloc = firebaseRef.child('location');
       divList = document.getElementById('liste');
-      divList2 = document.getElementById('liste2');
+      divList2 = document.getElementById('liste');
 
 
 
@@ -158,7 +165,7 @@
 
 
           const button =document.createElement('button');
-          button.innerText = snap.val();
+          button.innerText = snap.key;
           button.id =snap.key;
           divList.appendChild(button);
           var buttonid = snap.key;
@@ -167,11 +174,13 @@
          
           const button2 =document.createElement('button');
           button2.innerText = "delete";
-          button2.id = "delete";
-          divList2.appendChild(button2);
+          button2.id = "delete" + i;
+          divList.appendChild(button2);
           var key = snap.key;
-          var buttonid = "delete";
+          var buttonid = "delete" + i;;
           document.getElementById(buttonid).setAttribute("onclick", "removeplace('" + key + "');");
+
+          i++;
 
       });
 
@@ -182,181 +191,64 @@
 
       window.location = "#detail1";
 
-      var firebaseRef = firebase.database().ref().child('location/' + id);
+      var latdata;
+      var lngdata;
+      var titel;
+
+      var userId = firebase.auth().currentUser.uid;
+
+      var firebaseRef = firebase.database().ref('/users/' + userId);
+      var firebaseloc = firebaseRef.child('location/' + id);
+
+      var lat = firebaseloc.child('lat/');
+      var lng = firebaseloc.child('lng/');
+
 
       var divloctitel = document.getElementById('loctitel').innerHTML = "";
 
       divloctitel = document.getElementById('loctitel');
 
 
-
-      firebaseRef.on('value', snap => {
-        divloctitel.innerText = snap.val();
+      firebaseloc.on('value', snap => {
+        titel = snap.key;
+        divloctitel.innerText = titel;
       });
 
-
-
-    }
-
-    function removeplace(){
-
-      var firebaseRef = firebase.database().ref().child('location/' + id);
-
-      console.log(firebaseRef);
-
-      firebaseRef.removeValue();
-
-    }
-
-  
-
-
-    /**
-     * initApp handles setting up UI event listeners and registering Firebase auth listeners:
-     *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
-     *    out, and that is where we update the UI.
-     
-    function initApp() {
-      // Listening for auth state changes.
-      // [START authstatelistener]
-      firebase.auth().onAuthStateChanged(function(user) {
-        // [START_EXCLUDE silent]
-        document.getElementById('quickstart-verify-email').disabled = true;
-        // [END_EXCLUDE]
-        if (user) {
-          // User is signed in.
-          var displayName = user.displayName;
-          var email = user.email;
-          var emailVerified = user.emailVerified;
-          var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
-          var providerData = user.providerData;
-          // [START_EXCLUDE]
-          document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
-          document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-          document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
-          if (!emailVerified) {
-            document.getElementById('quickstart-verify-email').disabled = false;
-          }
-          // [END_EXCLUDE]
-        } else {
-          // User is signed out.
-          // [START_EXCLUDE]
-          document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
-          document.getElementById('quickstart-sign-in').textContent = 'Sign in';
-          document.getElementById('quickstart-account-details').textContent = 'null';
-          // [END_EXCLUDE]
-        }
-        // [START_EXCLUDE silent]
-        document.getElementById('quickstart-sign-in').disabled = false;
-        // [END_EXCLUDE]
+      lat.on('value', snap => {
+        latdata = snap.val();
       });
-      // [END authstatelistener]
-      document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
-      document.getElementById('quickstart-sign-up').addEventListener('click', handleSignUp, false);
-      document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
-      document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
+
+      lng.on('value', snap => {
+        lngdata = snap.val();
+      });
+
+      console.log(latdata);
+
+      var pos = {
+              lat: latdata,
+              lng: lngdata
+            };
+
+      console.log(pos);
+
+      initMap(pos, titel);
+
     }
-    window.onload = function() {
-      initApp();
-    };
-   
 
-  //write
-  const myUserId = firebase.auth().currentUser.uid;
+    function removeplace(id){
 
-  function writeNewLocation(location, lat, lon) {
-    // A post entry.
-    var postData = {
-      uid: myUserId,
-      location: location,
-      lan: lon
-    };
+      var userId = firebase.auth().currentUser.uid;
 
-    var newLocationKey = firebase.database().ref().child('location').push().key;
+      var firebaseRef = firebase.database().ref('/users/' + userId);
+      var firebaseloc = firebaseRef.child('location/' + id);
 
-    var updates = {};
-      updates['/user/' + uid + '/' + newLocationKey] = postData;
+      console.log(firebaseloc);
 
-      return firebase.database().ref().update(updates);
+      firebaseloc.remove();
 
+      alert('Standort wurde gelöscht');
 
-  //read
+      readlist();
 
-  // get elements
-  const preObject = document.getElementById('object');
-  const ulList = document.getElementById('list');
-
-
-  //create reference
-  const dbReflocation = firebase.database().ref('location/' + myUserId);
-  const dbRefLat = dbRefObject.child('lat');
-  const dbRefLon = dbRefObject.child('lon');
-
-  // Sync object changes
-  dbRefLocation.on('value', snap => {
-
-  });
-
-  // Sync list changes
-  dbReflocation.on('child_added', snap => {
-
-    const li = document.getElementById('li');
-    li.innerText = snap.val();
-    li.id = snap.key;
-    ulList.appendChild(li);
-
-  });
-
-  dbReflocation.on('child_changed', snap => {
-
-    const liChanged = document.getElementById(snap.key);
-    liChanged.innerText = snap.val();
-
-  });
-
-  dbReflocation.on('child_removed', snap => {
-
-    const liToRemoved = document.getElementById(snap.key);
-    liToRemoved.remove();
-
-  });
-
-  //list
-
-*/
- 
- //write
-
-  //read
-
-  // get elements
-
- //read
-
- 
-
-
-
-function savePosition(lat, lon){
-
-  var userId = firebase.auth().currentUser.uid;
-  var location = document.getElementById('location').value;
-
-  // A post entry.
-    var postData = {
-      uid: userId,
-      location: location,
-      lan: lon
-    };
-
-    var newLocationKey = firebase.database().ref().child('location').push().key;
-
-    var updates = {};
-      updates['/user/' + uid + '/' + newLocationKey] = postData;
-
-      return firebase.database().ref().update(updates);
-
-      window.location = "#home";
-}
+    }
 
