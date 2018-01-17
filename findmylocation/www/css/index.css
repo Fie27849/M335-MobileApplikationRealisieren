@@ -93,6 +93,7 @@ h1.mLines{
 
 .ui-content{
     margin-top: 50px!important;
+    padding-bottom: 120px;
 }
 
 .footer{
@@ -106,22 +107,25 @@ h1.mLines{
     font-size: 18px;
     font-weight: 300;
     text-shadow: none;
+    z-index: 5;
+    height: 50px;
 }
 .footer .row .col-xs-12 span{
     line-height: 24px;
 }
 
-
 .userAuthFields, .newAccoutFields, .newPlaceFields, .newPW-link, .register-link, .showAll, .signOut{
     margin-bottom: 50px!important;
+}
+
+.newPlaceFields input{
+    width: 100%;
 }
 
 .userAuthFields input, .newAccoutFields input, .newPlaceFields input{
     border-radius: 0;
     margin-bottom: 10px;
 }
-
-
 
 #allowGPS{
     margin: 0;
@@ -182,10 +186,6 @@ h1.mLines{
     background: transparent;
 }
 
-
-
-
-
 .ui-btn-inner.ui-btn-corner-all{
 border: none;
 }
@@ -216,6 +216,10 @@ border: none;
     padding: 0;
 }
 
+.detail1content, .detail2content{
+    padding-bottom: 60px;
+}
+
 #liste{
     width: 100vw;
     margin: 0;
@@ -234,14 +238,23 @@ border: none;
     border-bottom: 1px solid #3975A9;
 }
 
-#liste button#delete{
-    border-left:  1px solid #3975A9;
+#liste button.listPlace{
+    width: 80%;
 }
+
+
+#liste button.deletePlace{
+    border-left:  1px solid #3975A9;
+    width: 20%;
+}
+
+
 
 #map_canvas{
     text-align: center;
-    max-width: none !important;
-    height: 400px;
+    width: 100vw;
+    height: 70vh;
+    min-height: 400px;
 }
 
 #map_canvas2{

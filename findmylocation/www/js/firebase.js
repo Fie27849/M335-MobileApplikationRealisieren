@@ -165,7 +165,8 @@
 
 
           const button =document.createElement('button');
-          button.innerText = snap.key;
+          //button.innerText = snap.key;
+          button.innerHTML = '<i class="fa fa-info" aria-hidden="true"></i> ' + snap.key;
           button.id =snap.key;
           divList.appendChild(button);
           var key = snap.key;
@@ -176,7 +177,8 @@
 
          
           const button2 =document.createElement('button');
-          button2.innerText = "delete";
+          //button2.innerText = "delete";
+          button2.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
           button2.id = "delete" + i;
           divList.appendChild(button2);
           var key = snap.key;
