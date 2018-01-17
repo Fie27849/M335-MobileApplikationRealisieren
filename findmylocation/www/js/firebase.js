@@ -171,7 +171,6 @@
 
 
           const button2 =document.createElement('button');
-          //button2.innerText = "delete";
           button2.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
           button2.id = "delete" + i;
           divList.appendChild(button2);

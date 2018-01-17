@@ -173,7 +173,7 @@ h1.mLines{
     z-index: 3;
 }
 
-#savePlace, #showAll, #btnSignout, #btnLogin, #btnSignin, #toRegister, #btnSignup, #planRoute, #btnAlleAnzeigen{
+#savePlace, #showAll, #btnSignout, #btnLogin, #btnSignin, #toRegister, #btnSignup, #planRoute, #btnAlleAnzeigen, #btnShowListFromMap{
     background: linear-gradient(to bottom right, #3975A9, #064276);
     opacity: 1;
 }
@@ -193,7 +193,7 @@ h1.mLines{
 border: none;
 }
 
-.register-link a:hover, .showAll:hover, .signOut:hover, .alleAnzeigen:hover{
+.register-link a:hover, .showAll:hover, .signOut:hover, .alleAnzeigen:hover, .showListFromMap:hover{
     text-decoration: none;
 }
 
