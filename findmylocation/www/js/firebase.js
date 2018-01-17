@@ -182,9 +182,8 @@
 
 
 
-          
+
           const button =document.createElement('button');
-          //button.innerText = snap.key;
           button.innerHTML = '<i class="fa fa-info" aria-hidden="true"></i> ' + snap.key;
           button.id =snap.key;
           divList.appendChild(button);
@@ -295,6 +294,33 @@
 
     }
 
+   
+   function listMarkers(){
+
+      var arrloc = [];
+      var arrpos = [];
+
+      var userId = firebase.auth().currentUser.uid;
+
+      var firebaseRef = firebase.database().ref('/users/' + userId);
+      var firebaseloc = firebaseRef.child('location');
+
+      firebaseloc.on('child_added', snap => {
+        var key = snap.key;
+        arrloc.push(key)
+        var lat = firebaseloc.child('lat/' + key);
+        var lng = firebaseloc.child('lng/' + key);
+        var pos = {
+              lat: latdata,
+              lng: lngdata
+            };
+        arrpos.push(pos);
+      }
+
+      console.log(arrloc);
+      console.log(arrpos);
+    
+   }
 
 
 

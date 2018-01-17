@@ -220,6 +220,8 @@
 									<button id="savePlace" onclick="CurrentPosition();">Speichern</button></a>
 								</div>
 								<a href="#list" class="showAll"><button type="button" name="showAll" id="showAll" onclick="readlist();">Alle anzeigen</button></a>
+								<a href="#alleAnzeigen" class="alleAnzeigen"><button id="btnAlleAnzeigen" onclick="alleAnzeigen();">alle auf Karte anzeigen</button></a>
+								<div class="signoutTop"></div>
 								<a href="#userAuth" class="signOut"><button id="btnSignout" onclick="toggleSignIn();">Abmelden</button></a>
 								<div class="loading hidden">
 									<div class="pacman"></div>
@@ -350,6 +352,47 @@
 					</div>
 					<div data-role="content detail2Content" class="detail2content">
 						<div id="map_canvas2">
+
+						</div>
+					</div>
+					<div class="footer">
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-12">
+									<span>Copyright ©2018</span><br>
+									<span>Stephanie Kessler & Sandro Trottmann</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- /page -->
+
+
+				<!-- Start "alle anzeigen"-->
+				<div data-role="page" id="alleAnzeigen">
+					<div data-role="header" class="header">
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-1"></div>
+								<div class="col-xs-3">
+									<div class="logoWrap">
+										<div class="logoWrapInner">
+											<a href="#home" id="linkBack">
+												<i class="fa fa-chevron-left" aria-hidden="true"></i> zurück
+											</a>
+										</div>
+									</div>								
+								</div>
+								<div class="col-xs-7">
+									<h1 id="loctitel">
+									</h1> 
+								</div>
+								<div class="col-xs-1"></div>
+							</div>
+						</div>
+					</div>
+					<div data-role="content alleAnzeigenContent" class="alleAnzeigenContent">
+						<div id="map_canvas3">
 
 						</div>
 					</div>
