@@ -130,7 +130,7 @@
 
     function addlist(pos){
 
-      showLoader();
+      $('.loading').removeClass('hidden');
 
       var userId = firebase.auth().currentUser.uid;
 
@@ -143,19 +143,14 @@
 
       firebaseloc2.set(pos);
 
-      hideLoader();
+      $('.loading').addClass('hidden');
+
       alert('Standort wurde gespeichert');
+      
+      window.location.reload();
 
     }
 
-    function showLoader(){
-        $('.loading').removeClass('hidden');
-        window.location.reload();
-    }
-    function hideLoader(){
-        $('.loading').addClass('hidden');
-        window.location.reload();
-    }
 
     function readlist(){
 

@@ -401,13 +401,15 @@ body .dot {
 .loading{
     height: 115px;
     position: relative;
-    display: block;
+    opacity: 1;
+    transition: .1s opacity ease;
 }
 .pacman, .dot{
     margin-top: 40px;
 }
 .loading.hidden{
-    display: none;
+    opacity: 0;
+    transition: .1s opacity ease;
 }
 
 /*------------------------------------------------------------------------------------------------*/
