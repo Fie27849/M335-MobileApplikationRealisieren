@@ -239,9 +239,33 @@ border: none;
 }
 
 #map_canvas{
-    with: 100px;
+    text-align: center;
+    max-width: none !important;
     height: 400px;
 }
+
+#map_canvas2{
+    text-align: center;
+    width: 100vw !important;
+    height: 90vh !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

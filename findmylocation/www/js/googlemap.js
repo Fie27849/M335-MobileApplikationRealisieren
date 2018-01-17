@@ -1,9 +1,11 @@
 
+var pos;
+
  function CurrentPosition(){
 
    if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
+            pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
@@ -19,6 +21,8 @@
 
 function initMap(pos, titel) {
 
+      this.pos = pos;
+
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
           center: {lat: -34.397, lng: 150.644},
           zoom: 15
@@ -33,7 +37,7 @@ function initMap(pos, titel) {
             // marker.
             window.setTimeout(function() {
               map.panTo(pos);
-            }, 1000);
+            }, 3000);
           });
 
             infoWindow.setPosition(pos);
@@ -55,16 +59,55 @@ function initMap(pos, titel) {
     }
 
 
-/*
+var directionsService = new google.maps.DirectionsService();
+  var directionsDisplay = new google.maps.DirectionsRenderer();
 
-//add Marker
-var addMarkersToMap = function(map){
-var latitudeAndLongitudeOne = new google.maps.LatLng('-33.890542','151.274856');
+function routemap(titel){
 
-var markerOne = new google.maps.Marker({
-position: latitudeAndLongitudeOne,
-map: map
-});
+  var map = new google.maps.Map(document.getElementById('map_canvas2'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 30
+        });
+        
+        cupo();
+
+        // Try HTML5 geolocation.
+ function cupo(){       
+    if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            console.log('test');
+            var currentpos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            createRoute(currentpos);
+         });
+        }
+            else {
+          // Browser doesn't support Geolocation
+          console.log('error');
+        }
+        }
+
+  function createRoute(currentpos){
+       map.setCenter(currentpos);
+       directionsService.route({ 
+        origin: currentpos,
+        destination: new google.maps.LatLng(pos),
+        travelMode: google.maps.TravelMode.DRIVING
+      },
+    function(response, status)
+    { if (status == google.maps.DirectionsStatus.OK)
+      { directionsDisplay.setMap(map);
+        directionsDisplay.setDirections(response);
+        }
+    });
+  }
+  
 }
 
-*/
+
+
+
+
+

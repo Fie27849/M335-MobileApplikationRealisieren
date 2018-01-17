@@ -168,8 +168,10 @@
           button.innerText = snap.key;
           button.id =snap.key;
           divList.appendChild(button);
+          var key = snap.key;
           var buttonid = snap.key;
-          document.getElementById(buttonid).setAttribute("onclick", "detail('" + buttonid + "');");
+          document.getElementById(buttonid).setAttribute("onclick", "detail('" + key + "');");
+          console.log(buttonid);
 
          
           const button2 =document.createElement('button');
@@ -186,8 +188,14 @@
 
     }
 
+    var id;
+    var titel;
+
 
     function detail(id){
+
+      this.id = id;
+      this.titel = titel
 
       window.location = "#detail1";
 
@@ -213,6 +221,8 @@
         titel = snap.key;
         divloctitel.innerText = titel;
       });
+
+      this.titel = titel
 
       lat.on('value', snap => {
         latdata = snap.val();
@@ -251,4 +261,30 @@
       readlist();
 
     }
+
+    function detail2(){
+
+      console.log(this.titel);
+
+      window.location = "#detail2";
+
+      var divloctitel2 = document.getElementById('loctitel2').innerHTML = "";
+
+      divloctitel2 = document.getElementById('loctitel2');
+
+      divloctitel2.innerText = this.titel;
+
+
+
+      routemap(this.titel);
+
+    }
+
+
+
+
+
+
+
+
 

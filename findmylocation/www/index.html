@@ -31,7 +31,6 @@
 
 	
 	<!-- Stylesheets -->
-	<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="js/jquery.mobile-1.1.0.min.css" />
 	<link rel="stylesheet" href="css/index.css" />
 
@@ -304,7 +303,7 @@
 						<div id="map_canvas">
 
 						</div>
-						<button type="button" name="planRoute" id="planRoute">Route planen</button>
+						<button type="button" name="planRoute" id="planRoute" onclick="detail2();">Route planen</button>
 						<button type="button" name="delPlace" id="delPlace" onclick="removeplace();">Standort löschen</button>
 					</div>
 					<div class="footer">
@@ -336,14 +335,14 @@
 									</div>								
 								</div>
 								<div class="col-xs-7">
-									<h1 class="mLines">NAME AUS DB</h1>
+									<h1 id="loctitel2">
 								</div>
 								<div class="col-xs-1"></div>
 							</div>
 						</div>
 					</div>
 					<div data-role="content detail2Content">
-						<div id="map_canvas">
+						<div id="map_canvas2">
 
 						</div>
 					</div>
