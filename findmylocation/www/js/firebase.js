@@ -130,21 +130,29 @@
 
     function addlist(pos){
 
-      alert('Standort wurde gespeichert');
+      showLoader();
 
       var userId = firebase.auth().currentUser.uid;
 
       var firebaseRef = firebase.database().ref('/users/' + userId);
       var firebaseloc = firebaseRef.child('location');
       
-      
-
       var place = document.getElementById('nameNewPlace').value;
 
       var firebaseloc2 = firebaseloc.child(place);
 
       firebaseloc2.set(pos);
 
+      showLoader();
+      alert('Standort wurde gespeichert');
+
+    }
+
+    function showLoader(){
+        $('.loading').toggleClass('hidden');
+    }
+    function hideLoader(){
+        $('.loading').toggleClass('hidden');
     }
 
     function readlist(){
@@ -165,7 +173,8 @@
 
 
           const button =document.createElement('button');
-          button.innerText = snap.key;
+          //button.innerText = snap.key;
+          button.innerHTML = '<i class="fa fa-info" aria-hidden="true"></i> ' + snap.key;
           button.id =snap.key;
           divList.appendChild(button);
           var key = snap.key;
@@ -176,7 +185,8 @@
 
          
           const button2 =document.createElement('button');
-          button2.innerText = "delete";
+          //button2.innerText = "delete";
+          button2.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
           button2.id = "delete" + i;
           divList.appendChild(button2);
           var key = snap.key;
