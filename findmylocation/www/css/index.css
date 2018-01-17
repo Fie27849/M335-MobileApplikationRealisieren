@@ -193,7 +193,7 @@ h1.mLines{
 border: none;
 }
 
-.register-link a:hover, .showAll:hover, .signOut:hover{
+.register-link a:hover, .showAll:hover, .signOut:hover, .alleAnzeigen:hover{
     text-decoration: none;
 }
 
