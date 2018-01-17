@@ -241,7 +241,7 @@
               lng: lngdata
             };
 
-      console.log(pos);
+      console.log('detail' + pos);
 
       initMap(pos, titel);
 

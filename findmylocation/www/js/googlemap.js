@@ -22,7 +22,11 @@ var pos;
 
 function initMap(pos, titel) {
 
+  google.maps.event.addDomListener(window, 'load', initialize());
+
       this.pos = pos;
+
+      function initialize(){
 
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
           center: {lat: -34.397, lng: 150.644},
@@ -37,12 +41,17 @@ function initMap(pos, titel) {
           map.addListener('center_changed', function() {
             // 3 seconds after the center of the map has changed, pan back to the
             // marker.
+            google.maps.event.trigger(map, 'resize');
+
+
             window.setTimeout(function() {
               map.panTo(pos);
             }, 3000);
+
           });
             infoWindow.setContent(titel);
             infoWindow.setPosition(pos);
+            infoWindow.open(map);
             map.setCenter(pos);
             //handleLocationError(true, infoWindow, map.getCenter());
         } else {
@@ -56,6 +65,7 @@ function initMap(pos, titel) {
         infoWindow.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
+      }
       }
     }
 
@@ -106,6 +116,8 @@ function routemap(titel){
   }
   
 }
+
+google.maps.event.addDomListener(window, 'load');
 
 
 
