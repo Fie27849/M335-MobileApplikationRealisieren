@@ -206,6 +206,7 @@ border: none;
     font-family: 'Open Sans', sans-serif;
     padding: 7px 15px;
     text-decoration: none;
+    width: 100px;
 }
 .logoWrapInner i{
     font-size: 13px;
