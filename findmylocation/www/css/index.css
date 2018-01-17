@@ -182,10 +182,6 @@ h1.mLines{
     opacity: 1;
 }
 
-#delPlace{
-    background: linear-gradient(to bottom right, #ff4c4c, #b20000);
-    opacity: 1;
-}
 
 .ui-btn-hidden{
     opacity: 1;
