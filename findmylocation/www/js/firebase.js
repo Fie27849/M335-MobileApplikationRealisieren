@@ -130,21 +130,29 @@
 
     function addlist(pos){
 
-      alert('Standort wurde gespeichert');
+      showLoader();
 
       var userId = firebase.auth().currentUser.uid;
 
       var firebaseRef = firebase.database().ref('/users/' + userId);
       var firebaseloc = firebaseRef.child('location');
       
-      
-
       var place = document.getElementById('nameNewPlace').value;
 
       var firebaseloc2 = firebaseloc.child(place);
 
       firebaseloc2.set(pos);
 
+      showLoader();
+      alert('Standort wurde gespeichert');
+
+    }
+
+    function showLoader(){
+        $('.loading').toggleClass('hidden');
+    }
+    function hideLoader(){
+        $('.loading').toggleClass('hidden');
     }
 
     function readlist(){
