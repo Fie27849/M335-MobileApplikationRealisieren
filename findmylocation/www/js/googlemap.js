@@ -1,5 +1,5 @@
-
 var pos;
+var titel;
 
  function CurrentPosition(){
 
@@ -25,18 +25,18 @@ function initMap(pos, titel) {
   google.maps.event.addDomListener(window, 'load', initialize());
 
       this.pos = pos;
+      this.titel = titel;
+
 
       function initialize(){
 
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
-          center: {lat: -34.397, lng: 150.644},
+          center: pos,
           zoom: 15
         });
-        var infoWindow = new google.maps.InfoWindow({map: map});
 
+        
 
-        // Try HTML5 geolocation.
-        if (pos) {
 
           map.addListener('center_changed', function() {
             // 3 seconds after the center of the map has changed, pan back to the
@@ -47,27 +47,44 @@ function initMap(pos, titel) {
             window.setTimeout(function() {
               map.panTo(pos);
             }, 3000);
+            });
 
+            map.setCenter(this.pos);
+
+          google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+            setMarkers();
           });
-            infoWindow.setContent(titel);
-            infoWindow.setPosition(pos);
-            infoWindow.open(map);
-            map.setCenter(pos);
-            //handleLocationError(true, infoWindow, map.getCenter());
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      }
+          function setMarkers() {
+
+          	var contentString = this.titel;
+
+	        var infowindow = new google.maps.InfoWindow({
+	          content: this.titel
+	        });
+
+	        var marker = new google.maps.Marker({
+	          position: this.pos,
+	          map: map
+	        });
+
+	        marker.addListener('click', function() {
+	          infowindow.open(map, marker);      
+        });
+
+          }
+
+      
       }
     }
+
+
+
+
+
+
+
+
 
 
 var directionsService = new google.maps.DirectionsService();
@@ -118,8 +135,6 @@ function routemap(titel){
 }
 
 google.maps.event.addDomListener(window, 'load');
-
-
 
 
 
