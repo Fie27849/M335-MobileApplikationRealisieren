@@ -182,9 +182,8 @@
 
 
 
-          
+
           const button =document.createElement('button');
-          //button.innerText = snap.key;
           button.innerHTML = '<i class="fa fa-info" aria-hidden="true"></i> ' + snap.key;
           button.id =snap.key;
           divList.appendChild(button);
