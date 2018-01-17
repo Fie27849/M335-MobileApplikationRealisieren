@@ -130,6 +130,8 @@
 
     function addlist(pos){
 
+      console.log(performance.now());
+
       $('.loading').removeClass('hidden');
 
       var userId = firebase.auth().currentUser.uid;
@@ -143,12 +145,10 @@
 
       firebaseloc2.set(pos);
 
-      $('.loading').addClass('hidden');
-
       alert('Standort wurde gespeichert');
-      
-      window.location.reload();
 
+      $('.loading').addClass('hidden');
+      window.location.reload(true);
     }
 
 
@@ -169,6 +169,20 @@
       firebaseloc.on('child_added', snap => {
 
 
+
+          const button2 =document.createElement('button');
+          //button2.innerText = "delete";
+          button2.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+          button2.id = "delete" + i;
+          divList.appendChild(button2);
+          var key = snap.key;
+          var buttonid = "delete" + i;;
+          document.getElementById(buttonid).setAttribute("onclick", "removeplace('" + key + "');");
+          document.getElementById(buttonid).setAttribute("class", "deletePlace");
+
+
+
+          
           const button =document.createElement('button');
           //button.innerText = snap.key;
           button.innerHTML = '<i class="fa fa-info" aria-hidden="true"></i> ' + snap.key;
@@ -181,15 +195,7 @@
           console.log(buttonid);
 
          
-          const button2 =document.createElement('button');
-          //button2.innerText = "delete";
-          button2.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
-          button2.id = "delete" + i;
-          divList.appendChild(button2);
-          var key = snap.key;
-          var buttonid = "delete" + i;;
-          document.getElementById(buttonid).setAttribute("onclick", "removeplace('" + key + "');");
-          document.getElementById(buttonid).setAttribute("class", "deletePlace");
+
 
           i++;
 

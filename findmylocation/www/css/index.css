@@ -251,7 +251,7 @@ border: none;
 
 
 #liste button.deletePlace{
-    border-left:  1px solid #3975A9;
+    border-right:  1px solid #3975A9;
     width: 20%;
 }
 
