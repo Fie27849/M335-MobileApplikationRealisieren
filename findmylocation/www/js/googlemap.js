@@ -9,6 +9,7 @@ var pos;
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
+            console.log(pos);
             addlist(pos);
          });
         }
@@ -29,6 +30,7 @@ function initMap(pos, titel) {
         });
         var infoWindow = new google.maps.InfoWindow({map: map});
 
+
         // Try HTML5 geolocation.
         if (pos) {
 
@@ -39,9 +41,8 @@ function initMap(pos, titel) {
               map.panTo(pos);
             }, 3000);
           });
-
-            infoWindow.setPosition(pos);
             infoWindow.setContent(titel);
+            infoWindow.setPosition(pos);
             map.setCenter(pos);
             //handleLocationError(true, infoWindow, map.getCenter());
         } else {

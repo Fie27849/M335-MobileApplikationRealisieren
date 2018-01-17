@@ -171,6 +171,7 @@
           var key = snap.key;
           var buttonid = snap.key;
           document.getElementById(buttonid).setAttribute("onclick", "detail('" + key + "');");
+          document.getElementById(buttonid).setAttribute("class", "listPlace");
           console.log(buttonid);
 
          
@@ -181,6 +182,7 @@
           var key = snap.key;
           var buttonid = "delete" + i;;
           document.getElementById(buttonid).setAttribute("onclick", "removeplace('" + key + "');");
+          document.getElementById(buttonid).setAttribute("class", "deletePlace");
 
           i++;
 
