@@ -143,16 +143,18 @@
 
       firebaseloc2.set(pos);
 
-      showLoader();
+      hideLoader();
       alert('Standort wurde gespeichert');
 
     }
 
     function showLoader(){
-        $('.loading').toggleClass('hidden');
+        $('.loading').removeClass('hidden');
+        window.location.reload();
     }
     function hideLoader(){
-        $('.loading').toggleClass('hidden');
+        $('.loading').addClass('hidden');
+        window.location.reload();
     }
 
     function readlist(){
