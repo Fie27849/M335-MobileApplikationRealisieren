@@ -178,13 +178,10 @@ var dummypos = {lat: 51.508742, lng: -0.120850};
             // marker.
             google.maps.event.trigger(map, 'resize');
 
-            window.setTimeout(function() {
-              map.panTo(arrpos[0]);
-            }, 3000);
 
             });
 
-            map.setCenter(arrpos[0]);
+            map.setCenter(dummypos);
 
           google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
             setMarkers(map, arrloc, arrpos);
