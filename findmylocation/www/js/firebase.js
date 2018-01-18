@@ -210,9 +210,6 @@
       this.id = id;
       this.titel = titel
 
-      //Gewünschte Reise Methode in Globaler Variable zwischenspeichern
-      selectedMode = document.getElementById('mode').value;
-
       window.location = "#detail1";
 
       var latdata;
@@ -288,6 +285,9 @@
     //Funktion für Ansicht Routenplanung
     function detail2(){
 
+      //Gewünschte Reise Methode in Globaler Variable zwischenspeichern
+      selectedMode = document.getElementById('mode').value;
+
       //Gewünschte Fortbewegungsmethode in String für Titel Speichern
       if(this.selectedMode == 'DRIVING'){
       this.selectedMode = 'Fortbewegungsart: Auto';
@@ -301,6 +301,8 @@
       if(this.selectedMode == 'TRANSIT'){
         this.selectedMode = 'Fortbewegungsart: Transit';
       }
+
+      console.log(this.selectedMode);
 
       //Titel der Location und Fortbewegungsart anzeigen
       window.location = "#detail2";
