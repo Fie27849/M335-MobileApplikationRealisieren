@@ -314,7 +314,7 @@
               lng: lngdata
             };
         arrpos.push(pos);
-      }
+      });
 
       console.log(arrloc);
       console.log(arrpos);
