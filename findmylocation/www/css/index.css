@@ -99,7 +99,7 @@ h1.mLines{
 .footer{
     background-image: linear-gradient(to bottom right, #3975a9,#064276);
     color: #fff;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -127,12 +127,6 @@ h1.mLines{
     border-radius: 0;
     margin-bottom: 10px;
     width: 100%;
-}
-
-#allowGPS{
-    margin: 0;
-    width: 20px;
-    height: 20px;
 }
 
 .ui-btn.ui-shadow.ui-btn-corner-all.ui-fullsize.ui-btn-block.ui-btn-up-c,
@@ -232,6 +226,7 @@ border: none;
     width: 100vw;
     margin: 0;
     padding: 0;
+    padding-bottom: 111px;
 }
 #liste button{
     display: inline-block;
@@ -261,7 +256,7 @@ border: none;
 #map_canvas{
     text-align: center;
     width: 100vw;
-    height: 70vh;
+    height: 60vh;
     min-height: 400px;
 }
 
