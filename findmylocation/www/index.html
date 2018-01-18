@@ -77,7 +77,7 @@
 											<button id="btnLogin" onclick="toggleSignIn();">Anmelden</button>
 										</div>									
 									<div class="newPW-link">
-										<span>Hast du dein Passwort vergessen?</span>
+										<span>Hast du dein Passwort vergessen? Gib deine E-Mailadresse ein und klicke hier:</span>
 										<button id="btnSignin" onclick="sendPasswordReset();">Passwort Reset</button>
 									</div>
 									<div class="register-link">
@@ -127,8 +127,7 @@
 									<div class="newAccoutFields">
 											<input type="text" name="mail-newAccount" id="mailNewAccount" placeholder="E-Mail">
 											<input type="password" name="newnewAccountPW" id="newnewAccountPW" placeholder="Passwort">
-											<input type="checkbox" name="allowGPS" id="allowGPS" value="allowGPS">Standortzugriff erlauben<br>
-											<button id="btnSignup" onclick="handleSignUp();">Regestrieren</button></a>
+											<button id="btnSignup" onclick="handleSignUp();">Reiestrieren</button></a>
 										</div>
 									<span class="backToUserAuth"><a href="#userAuth" id="backToUserAuth">Abbrechen</a></span>
 								</div>
@@ -148,9 +147,9 @@
 				</div><!-- /page -->
 
 
-				<!-- Start "NeuesPasswort"  -->
+				<!-- Start "NeuesPasswort" => wird mit eingabe der E-Mail und klich auf "Passwort Reset" gelöst -->
 
-				<div data-role="page" id="newPW">
+<!-- 				<div data-role="page" id="newPW">
 					<div data-role="header" class="header">
 						<div class="container">
 							<div class="row">
@@ -190,7 +189,7 @@
 							</div>
 						</div>
 					</div>
-				</div><!-- /page -->
+				</div> --><!-- /page -->
 
 
 				<!-- Start "Home" -->
@@ -219,14 +218,15 @@
 									<input type="text" name="nameNewPlace" id="nameNewPlace" placeholder="neuen Ort benennen">
 									<button id="savePlace" onclick="CurrentPosition();">Speichern</button></a>
 								</div>
+<<<<<<< HEAD
 								<a href="#list" class="showAll"><button type="button" name="showAll" id="showAll" onclick="readlist();">Alle anzeigen</button></a>
 								<a href="#alleAnzeigen" class="alleAnzeigen"><button id="btnAlleAnzeigen" onclick="listMarkers();">alle auf Karte anzeigen</button></a>
+=======
+								<a href="#list" class="showAll"><button type="button" name="showAll" id="showAll" onclick="readlist();">Alle in Liste anzeigen</button></a>
+								<a href="#alleAnzeigen" class="alleAnzeigen"><button id="btnAlleAnzeigen" onclick="alleAnzeigen();">Alle auf Karte anzeigen</button></a>
+>>>>>>> fea593cb5da0203a3f66ca6bae4930697ae66c86
 								<div class="signoutTop"></div>
 								<a href="#userAuth" class="signOut"><button id="btnSignout" onclick="toggleSignIn();">Abmelden</button></a>
-								<div class="loading hidden">
-									<div class="pacman"></div>
-									<div class="dot"></div>
-								</div>
 							</div>
 						</div>
 					</div>						
@@ -391,6 +391,10 @@
 								</div>
 								<div class="col-xs-7">
 									<h1 id="loctitel">
+<<<<<<< HEAD
+=======
+									<h1 id="loctitel3">
+>>>>>>> fea593cb5da0203a3f66ca6bae4930697ae66c86
 									</h1> 
 								</div>
 								<div class="col-xs-1"></div>
@@ -414,6 +418,47 @@
 					</div>
 				</div><!-- /page -->
 
+
+
+				<!-- Start "loading Page"-->
+				<div data-role="page" id="loadingPage">
+					<div data-role="header" class="header">
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-1"></div>
+								<div class="col-xs-3">
+									<div class="logoWrap">
+										<div class="logoWrapInner">
+											<a href="#home" id="linkBack">
+												<i class="fa fa-chevron-left" aria-hidden="true"></i> zurück
+											</a>
+										</div>
+									</div>								
+								</div>
+								<div class="col-xs-7">
+									<h1 class="mLines">Einen Moment bitte . . .</h1> 
+								</div>
+								<div class="col-xs-1"></div>
+							</div>
+						</div>
+					</div>
+					<div data-role="content loadingPage" class="loadingPage">
+						<div class="loading hidden">
+							<div class="pacman"></div>
+							<div class="dot"></div>
+						</div>
+					</div>
+					<div class="footer">
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-12">
+									<span>Copyright ©2018</span><br>
+									<span>Stephanie Kessler & Sandro Trottmann</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- /page -->
 
 			</div>
 		</div>

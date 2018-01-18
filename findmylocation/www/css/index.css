@@ -93,7 +93,7 @@ h1.mLines{
 
 .ui-content{
     margin-top: 50px!important;
-    padding-bottom: 120px;
+    padding-bottom: 60px;
 }
 
 .footer{
@@ -122,13 +122,11 @@ h1.mLines{
     margin-top: 50px;
 }
 
-.newPlaceFields input{
-    width: 100%;
-}
 
 .userAuthFields input, .newAccoutFields input, .newPlaceFields input{
     border-radius: 0;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 #allowGPS{
@@ -173,15 +171,15 @@ h1.mLines{
     z-index: 3;
 }
 
+<<<<<<< HEAD
 #savePlace, #showAll, #btnSignout, #btnLogin, #btnSignin, #toRegister, #btnSignup, #planRoute, #btnAlleAnzeigen{
+=======
+#savePlace, #showAll, #btnSignout, #btnLogin, #btnSignin, #toRegister, #btnSignup, #planRoute, #btnAlleAnzeigen, #btnShowListFromMap{
+>>>>>>> fea593cb5da0203a3f66ca6bae4930697ae66c86
     background: linear-gradient(to bottom right, #3975A9, #064276);
     opacity: 1;
 }
 
-#delPlace{
-    background: linear-gradient(to bottom right, #ff4c4c, #b20000);
-    opacity: 1;
-}
 
 .ui-btn-hidden{
     opacity: 1;
@@ -193,7 +191,11 @@ h1.mLines{
 border: none;
 }
 
+<<<<<<< HEAD
 .register-link a:hover, .showAll:hover, .signOut:hover, .alleAnzeigen:hover{
+=======
+.register-link a:hover, .showAll:hover, .signOut:hover, .alleAnzeigen:hover, .showListFromMap:hover{
+>>>>>>> fea593cb5da0203a3f66ca6bae4930697ae66c86
     text-decoration: none;
 }
 
@@ -429,26 +431,6 @@ body .dot {
 }
 
 /*------------------------------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
