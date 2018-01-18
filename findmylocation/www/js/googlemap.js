@@ -112,6 +112,8 @@ var dummypos = {lat: 51.508742, lng: -0.120850};
   	          zoom: 15
       	   });
 
+          //set center, damit addListener center_changed aktiv wird
+          map.setCenter(this.dummypos);
 
       	  directionsDisplay.setMap(map);
 
