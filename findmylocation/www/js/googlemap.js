@@ -108,21 +108,39 @@ var dummypos = {lat: 51.508742, lng: -0.120850};
           var directionsService = new google.maps.DirectionsService;
           //Map erstellen und in Detailseite platzieren
       	  var map = new google.maps.Map(document.getElementById('map_canvas2'), {
-  	          center: pos,
+  	          center: dummypos,
   	          zoom: 15
       	   });
+          
+          //Bei resize Karte über Position einmalig zentrieren
+          google.maps.event.addListenerOnce(map, 'resize', function(){
+              window.setTimeout(function() {
+                map.panTo(pos);
+              }, 3000);
+          });
+
+          //Damit Karte sauber dargestellt wird mit trigger anstossen
+          map.addListener('center_changed', function() {
+
+              google.maps.event.trigger(map, 'resize');
+                
+          });
 
           //set center, damit addListener center_changed aktiv wird
           map.setCenter(this.dummypos);
 
       	  directionsDisplay.setMap(map);
 
-          //Damit Karte sauber dargestellt wird mit trigger anstossen
-	  		  map.addListener('center_changed', function() {
+          //Sobald Karte geladen wurde, Marker setzen 
+          google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
 
-	            google.maps.event.trigger(map, 'resize');
+              setMarkers();
 
-	         });
+              google.maps.event.trigger(map, 'resize');
+              window.setTimeout(function() {
+              map.panTo(pos);
+              }, 3000);
+          });
 
 	        //Funktion aufrufen, für die Bestimmung des aktuellen Standortes
 	        cupo(map, selectedMode, directionsService, directionsDisplay);
