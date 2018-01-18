@@ -63,6 +63,9 @@ body {
     left: 0;
     right: 0;
 }
+.header .container{
+    padding-top: 5px;
+}
 
 h1 {
     font-size:28px;
@@ -270,8 +273,9 @@ border: none;
 #map_canvas2{
     text-align: center;
     width: 100vw;
-    height: 80vh;
+    height: 70vh;
     margin-top: 122px;
+    position: absolute;
 }
 #map_canvas3{
     width: 100%;
