@@ -100,33 +100,34 @@ var dummypos = {lat: 51.508742, lng: -0.120850};
     //Erst wenn Dom geladen ist mit der Initialisierung beginnen
 		google.maps.event.addDomListener(window, 'load', initialize());
 
-
+      //Initialisierung laden
 		  function initialize(){
 
+          //Service für Routenplanaung einbinden
       		var directionsDisplay = new google.maps.DirectionsRenderer;
           var directionsService = new google.maps.DirectionsService;
+          //Map erstellen und in Detailseite platzieren
       	  var map = new google.maps.Map(document.getElementById('map_canvas2'), {
-      	          center: pos,
-      	          zoom: 15
-      	        });
+  	          center: pos,
+  	          zoom: 15
+      	   });
 
 
       	  directionsDisplay.setMap(map);
 
+          //Damit Karte sauber dargestellt wird mit trigger anstossen
 	  		  map.addListener('center_changed', function() {
 
 	            google.maps.event.trigger(map, 'resize');
 
 	         });
 
-	        
+	        //Funktion aufrufen, für die Bestimmung des aktuellen Standortes
 	        cupo(map, selectedMode, directionsService, directionsDisplay);
-
 	    }
-
 	}
 
-
+  //Funktion für die bestimmung des aktuellen Standortes
 	function cupo(map, selectedMode, directionsService, directionsDisplay){       
 		  if (navigator.geolocation) {
 		      navigator.geolocation.getCurrentPosition(function(position) {
@@ -135,7 +136,7 @@ var dummypos = {lat: 51.508742, lng: -0.120850};
 	              lat: position.coords.latitude,
 	              lng: position.coords.longitude
 		          };
-
+            //Funktionsaufruf für das Erstellen der Route
 		        createRoute(currentpos, map, selectedMode, directionsService, directionsDisplay);
 	        });
 		  }
@@ -144,7 +145,7 @@ var dummypos = {lat: 51.508742, lng: -0.120850};
 		  }
 	}
 
-
+  //Funktion für das Erstellen der Route
 	function createRoute(currentpos, map, selectedMode, directionsService, directionsDisplay){
       directionsService.route({ 
          origin: currentpos,
@@ -162,35 +163,41 @@ var dummypos = {lat: 51.508742, lng: -0.120850};
 	    });
 	 }
 
-
+  //Funktion für das Darstellen alles Marker
 	function allMarkers(arrloc,arrpos) {
 
+      //Erst wenn Dom geladen ist mit der Initialisierung beginnen
   	  google.maps.event.addDomListener(window, 'load', initialize(arrloc,arrpos));
 
+      //Initialisierung laden
       function initialize(){
 
+        //Map erstellen und platzieren
         var map = new google.maps.Map(document.getElementById('map_canvas3'), {
             center: arrpos[0],	
             zoom: 10
         });
 
-
+        //Bei resize Karte über Position einmalig zentrieren
         google.maps.event.addListenerOnce(map, 'resize', function(){
             window.setTimeout(function() {
               map.panTo(arrpos[0]);
             }, 3000);
         });
 
-
+        //Damit Karte sauber dargestellt wird mit trigger anstossen
         map.addListener('center_changed', function() {
 
             google.maps.event.trigger(map, 'resize');
 
         });
 
+        //set center, damit addListener center_changed aktiv wird
         map.setCenter(dummypos);
 
+        //Sobald Karte geladen wurde, Marker setzen 
         google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+            //Funktionsaufruf damit alle Marker gesetzt werden
             setMarkers(map, arrloc, arrpos);
             window.setTimeout(function() {
               map.panTo(arrpos[0]);
@@ -199,13 +206,14 @@ var dummypos = {lat: 51.508742, lng: -0.120850};
       }
   }
 
-
+  //Funktion für das setzen aller Marker auf einer Karte, die Arrays mit den locations und den Geodaten und die map wird übergeben
   function setMarkers(map, arrloc, arrpos) {
 
       var latlngbounds = new google.maps.LatLngBounds();
 
       var i;
 
+    //Daten in Schleife aus Array lesen und alle Marker erstellen mit Infofenster mit Location Name
     for (i = 0; i < arrloc.length; i++) { 
 
   		  var content = arrloc[i];
@@ -221,6 +229,7 @@ var dummypos = {lat: 51.508742, lng: -0.120850};
             content: content
         });
 
+        //Click Funktion auf Marker um Location Name anzeigen zu können
   		  google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
   			    return function() {
   			       infowindow.open(map,marker);
