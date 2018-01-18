@@ -12,9 +12,9 @@
 
   var database = firebase.database();
 
-  //auth
+  //authentifizierung
 
-
+      // Ein und ausloggen
       function toggleSignIn() {
       if (firebase.auth().currentUser) {
         // [START signout]
@@ -31,8 +31,8 @@
           alert('Please enter a password.');
           return;
         }
-        // Sign in with email and pass.
-        // [START authwithemail]
+        
+        // Wenn ausgeloggt und Daten korrekt wird authentifizierung gestartet
         firebase.auth().signInWithEmailAndPassword(email, password)
         .catch(function(error) {
           // Handle Errors here.
@@ -53,6 +53,7 @@
       console.log('sign in');
     }
 
+    //Bei Änderung des Authentifizierungs Status wird angemeldet und auf die HomeSeite weitergeleitet
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         (window.location = "#home")
@@ -60,9 +61,9 @@
         console.log('no user');
       }
     });
-    /**
-     * Handles the sign up button press.
-     */
+   
+
+    //Registrierung mit E-Mail und Passwort
     function handleSignUp() {
       var email = document.getElementById('mailNewAccount').value;
       var password = document.getElementById('newnewAccountPW').value;
@@ -74,8 +75,7 @@
         alert('Please enter a password.');
         return;
       }
-      // Sign in with email and pass.
-      // [START createwithemail]
+      // Wenn Daten korrekt wird der user erstellt
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -104,6 +104,7 @@
       });
       // [END sendemailverification]
     }
+    // Passwort reset, wenn der User vorhanden ist wird ein Mail gesendet
     function sendPasswordReset() {
       var email = document.getElementById('email').value;
       // [START sendpasswordemail]
@@ -128,21 +129,26 @@
       // [END sendpasswordemail];
     }
 
+    // Standort in der Datenbank speichern
     function addlist(pos){
 
       console.log(performance.now());
 
       $('.loading').removeClass('hidden');
 
+      //User id in Variable speichern
       var userId = firebase.auth().currentUser.uid;
 
+      //Pfad in der Datenbank in Variable speichern
       var firebaseRef = firebase.database().ref('/users/' + userId);
       var firebaseloc = firebaseRef.child('location');
       
       var place = document.getElementById('nameNewPlace').value;
 
+      // Name der Location in Datenbank speichern
       var firebaseloc2 = firebaseloc.child(place);
 
+      //Geodaten speichern in Datenbank
       firebaseloc2.set(pos);
 
       alert('Standort wurde gespeichert');
@@ -151,7 +157,7 @@
       window.location.reload(true);
     }
 
-
+    //Daten aus der Datenbank lesen und Button erstellen
     function readlist(){
 
       var userId = firebase.auth().currentUser.uid;
@@ -159,17 +165,16 @@
       var divList = document.getElementById('liste').innerHTML = "";
       var i = 1 ;
 
+      //Pfad der Datenbank
       var firebaseRef = firebase.database().ref('/users/' + userId);
       var firebaseloc = firebaseRef.child('location');
       divList = document.getElementById('liste');
       divList2 = document.getElementById('liste');
 
-
-
+      //Snapshot der Datenbank erstellen und Daten auslesen
       firebaseloc.on('child_added', snap => {
 
-
-
+          //Delete Button mit onclick erstellen und Location id mitgeben
           const button2 =document.createElement('button');
           button2.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
           button2.id = "delete" + i;
@@ -179,9 +184,7 @@
           document.getElementById(buttonid).setAttribute("onclick", "removeplace('" + key + "');");
           document.getElementById(buttonid).setAttribute("class", "deletePlace");
 
-
-
-
+          //Location Button für Liste erstellen, Locationnamen und id mitgeben
           const button =document.createElement('button');
           button.innerHTML = '<i class="fa fa-info" aria-hidden="true"></i> ' + snap.key;
           button.id =snap.key;
@@ -192,23 +195,23 @@
           document.getElementById(buttonid).setAttribute("class", "listPlace");
           console.log(buttonid);
 
-         
-
-
           i++;
-
       });
 
     }
 
     var id;
     var titel;
+    var selectedMode;
 
-
+    //Funktion für doe Detailansicht
     function detail(id){
 
       this.id = id;
       this.titel = titel
+
+      //Gewünschte Reise Methode in Globaler Variable zwischenspeichern
+      selectedMode = document.getElementById('mode').value;
 
       window.location = "#detail1";
 
@@ -216,15 +219,17 @@
       var lngdata;
       var titel;
 
+      //UserID aus Datenbank lesen
       var userId = firebase.auth().currentUser.uid;
 
+      //Pfad zu User Daten (Location)
       var firebaseRef = firebase.database().ref('/users/' + userId);
       var firebaseloc = firebaseRef.child('location/' + id);
 
       var lat = firebaseloc.child('lat/');
       var lng = firebaseloc.child('lng/');
 
-
+      //Titel setzen mit Location Name für Detailseite
       var divloctitel = document.getElementById('loctitel').innerHTML = "";
 
       divloctitel = document.getElementById('loctitel');
@@ -237,6 +242,7 @@
 
       this.titel = titel
 
+      //lat und lng aus Datenban lesen
       lat.on('value', snap => {
         latdata = snap.val();
       });
@@ -254,31 +260,49 @@
 
       console.log('detail' + pos);
 
+      //Funktion für Map
       initMap(pos, titel);
-
     }
 
+    //Funktion für die Löschung einer Location aus der Liste
     function removeplace(id){
 
+      //UserID aus Datenbank lesen
       var userId = firebase.auth().currentUser.uid;
 
+      //Pfad zu Location Einträge
       var firebaseRef = firebase.database().ref('/users/' + userId);
       var firebaseloc = firebaseRef.child('location/' + id);
 
       console.log(firebaseloc);
 
+      //Eintrag mit übergeben Location ID löschen
       firebaseloc.remove();
 
       alert('Standort wurde gelöscht');
 
+      //Nach Löschung Liste neu laden
       readlist();
-
     }
 
+    //Funktion für Ansicht Routenplanung
     function detail2(){
 
-      console.log(this.titel);
+      //Gewünschte Fortbewegungsmethode in String für Titel Speichern
+      if(this.selectedMode == 'DRIVING'){
+      this.selectedMode = 'Fortbewegungsart: Auto';
+      }
+      if(this.selectedMode == 'WALKING'){
+        this.selectedMode = 'Fortbewegungsart: Gehen';
+      }
+      if(this.selectedMode == 'BICYCLING'){
+        this.selectedMode = 'Fortbewegungsart: Velo';
+      }
+      if(this.selectedMode == 'TRANSIT'){
+        this.selectedMode = 'Fortbewegungsart: Transit';
+      }
 
+      //Titel der Location und Fortbewegungsart anzeigen
       window.location = "#detail2";
 
       var divloctitel2 = document.getElementById('loctitel2').innerHTML = "";
@@ -288,23 +312,33 @@
       divloctitel2.innerText = this.titel;
 
 
+      var select = document.getElementById('select').innerHTML = "";
 
+      select = document.getElementById('select');
+
+      select.innerText = this.selectedMode;
+
+
+      //Funktion für map und Routenplanung
       routemap(this.titel);
 
     }
 
-   
+   //Funktion für die Datstellung aller Standorte auf der Karte
    function listMarkers(){
 
-
+      //Array für Location namen und Geodaten
       var arrloc = [];
       var arrpos = [];
 
+      //UserID in Variable speichern
       var userId = firebase.auth().currentUser.uid;
 
+      //Pfad von Datenbank in Variable speichern
       var firebaseRef = firebase.database().ref('/users/' + userId);
       var firebaseloc = firebaseRef.child('location');
 
+      //Location und Geodaten in den Arrays speichern
       firebaseloc.on('child_added', snap => {
         var key = snap.key;
         arrloc.push(key)
@@ -325,12 +359,10 @@
         arrpos.push(pos);
       });
 
-      console.log(arrloc);
-      console.log(arrpos);
-
+      //Funktion für Map mit allen Markers, Arrays mitgeben
       allMarkers(arrloc, arrpos);
     
-   }
+    }
 
 
 
