@@ -296,6 +296,7 @@
    
    function listMarkers(){
 
+
       var arrloc = [];
       var arrpos = [];
 
@@ -307,17 +308,27 @@
       firebaseloc.on('child_added', snap => {
         var key = snap.key;
         arrloc.push(key)
-        var lat = firebaseloc.child('lat/' + key);
-        var lng = firebaseloc.child('lng/' + key);
+        var firebaselocd = firebaseRef.child('location/'+ key);
+        var lat = firebaselocd.child('lat/');
+        var lng = firebaselocd.child('lng/');
+        lat.on('value', snap => {
+        latdata = snap.val();
+        });
+
+      lng.on('value', snap => {
+        lngdata = snap.val();
+        });
         var pos = {
               lat: latdata,
               lng: lngdata
             };
         arrpos.push(pos);
-      }
+      });
 
       console.log(arrloc);
       console.log(arrpos);
+
+      allMarkers(arrloc, arrpos);
     
    }
 
