@@ -172,7 +172,7 @@ h1.mLines{
 }
 
 
-#savePlace, #showAll, #btnSignout, #btnLogin, #btnSignin, #toRegister, #btnSignup, #planRoute, #btnAlleAnzeigen, #btnShowListFromMap{
+#savePlace, #showAll, #btnSignout, #btnLogin, #btnSignin, #toRegister, #btnSignup, #planRoute, #btnAlleAnzeigen, #btnShowListFromMap, .ui-select{
     background: linear-gradient(to bottom right, #3975A9, #064276);
     opacity: 1;
 }
